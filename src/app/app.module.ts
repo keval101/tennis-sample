@@ -34,7 +34,7 @@ import { PointByPointModule } from './pages/point-by-point/point-by-point.module
   ],
   imports: [
     CommonModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
