@@ -24,6 +24,7 @@ import {HomeModule} from "./pages/home/home.module";
 import {MatchesModule} from "./pages/matches/matches.module";
 import {H2hListModule} from "./pages/h2h-list/h2h-list.module";
 import { PointByPointModule } from './pages/point-by-point/point-by-point.module';
+import {TransferHttpCacheModule} from '@nguniversal/common'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { PointByPointModule } from './pages/point-by-point/point-by-point.module
   imports: [
     CommonModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    TransferHttpCacheModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
