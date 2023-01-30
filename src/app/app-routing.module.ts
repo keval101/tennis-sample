@@ -12,6 +12,7 @@ import {HomeComponent} from "./pages/home/home.component";
 import {MatchesComponent} from "./pages/matches/matches.component";
 import {H2hListComponent} from "./pages/h2h-list/h2h-list.component";
 import { PointByPointComponent } from './pages/point-by-point/point-by-point.component';
+import {ProfiltResolver} from './shared/resolvers/profilt.resolver';
 
 const routes: Routes = [
   {component: HomeComponent, path: ''},
@@ -20,7 +21,7 @@ const routes: Routes = [
   {component: PointByPointComponent, path: 'point-by-point-analysis'},
   {component: TournamentComponent, path: 'draw-results/:type/:tournament/:year', },
   // {component: ProfileComponent, path: 'profile/:name', },
-  {component: ProfileComponent, path: 'stats-ranking-titles-profile/:name', },
+  {component: ProfileComponent, resolve: { profileData: ProfiltResolver }, path: 'stats-ranking-titles-profile/:name', },
   {component: CalendarComponent, path: 'tennis-calendar/:type/:year', },
   {component: RankingsComponent, path: 'men-atp-rankings'},
   {component: RankingsComponent, path: 'women-wta-rankings'},
