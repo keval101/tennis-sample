@@ -1,0 +1,703 @@
+<div class="row p-0 h2h-info-container">
+  <div class="h2h-wrap bg-white overflow-hidden h-100">
+    <div class="row h2h-wrap__header h2h-head h2h-info-header p-2">
+      <div class="h2h__top px-0">
+        <div class="">
+          <div
+            class="d-flex justify-content-between gap-container profile-container"
+          >
+            <div>
+              <div class="profile-image">
+                <img
+                  class="image"
+                  [src]="getImageUrl(playerOne?.image)"
+                  onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+                  class="header__container-image"
+                />
+              </div>
+              <div
+                class="d-flex align-items-center mb-4 country-wrapper"
+              >
+                <img
+                  [src]="'assets/icons/flags/' + [playerOne.contryAcr] + '.svg'"
+                  style="width: 1.7em"
+                />
+                <p class="country-name mb-0 text-uppercase">
+                  {{ playerOne.country }}
+                </p>
+              </div>
+            </div>
+            <div class="py-md-3 py-2">
+              <div class="record__value pb-3 d-flex player-name" (click)="navigateToProfile(playerOne.name)">{{ playerOne.name }}</div>
+              <div class="d-flex">
+                <div>
+                  <div class="record__title">Ranking</div>
+                  <div class="ranking--rank">
+                    {{playerOne.currentRank ? playerOne.currentRank : "-" }}
+                    <span>({{ newDate | date : "dd-MM-yy" }})</span>
+                  </div>
+                </div>
+                <div class="px-2"><img src="assets/icons/divider.svg" style="height:92%"/></div>
+                <div>
+                  <div class="record__title">Best Rank</div>
+                  <div class="record__value">
+                    {{playerOne.bestRank}}
+                    <span
+                      *ngIf="statistics1?.bestRank?.date">({{
+                        statistics1?.bestRank?.date | date : "dd-MM-yy"
+                      }})</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="d-flex rank-container">
+                <div
+                  class="pe-3"
+                  style="border-right: 1px solid rgba(255, 255, 255, 0.5)"
+                >
+                  <div class="record__title">Ranking</div>
+                  <div class="ranking--rank">
+                    {{ playerOne.currentRank ? playerOne.currentRank : "-" }}
+                    <span>({{ newDate | date : "dd-MM-yy" }})</span>
+                  </div>
+                </div>
+                <div class="px-2">
+                  <div class="record__title">Best Rank</div>
+                  <div class="record__value">
+                    {{ playerOne.bestRank }}
+                    <span
+                      >({{
+                        statistics1?.bestRank?.date | date : "dd-MM-yy"
+                      }})</span
+                    >
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between gap-container">
+            <div
+              class="ps-3 pe-3 d-none d-md-block"
+              style="border-right: 1px dashed white"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center gap-2 mt-1"
+              >
+                <div class="record__icon">
+                  <img src="/assets/icons/win-gray.svg" alt="" />
+                </div>
+                <div class="record__title">Titles</div>
+              </div>
+              <div class="record__value text-end p-1">
+                {{ statistics1?.totalTitles }}
+              </div>
+            </div>
+            <div class="w-100" style="margin-right: auto">
+              <div
+                class="d-flex flex-wrap flex-md-column justify-content-between score-container"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 d-md-none flex-column flex-md-row"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2"
+                  >
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                    <div class="record__title">Titles</div>
+                  </div>
+                  <div class="record__value text-end">
+                    {{ statistics1?.totalTitles }}
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-column flex-md-row"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2"
+                  >
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                    <div class="record__title">Grand Slams</div>
+                  </div>
+                  <div class="record__value text-end">
+                    {{ playerOne.playerStat.slamWin }}
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-column flex-md-row"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2"
+                  >
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                    <div class="record__title">Masters</div>
+                  </div>
+                  <div class="record__value text-end">
+                    {{ playerOne.playerStat.masterWin }}
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-column flex-md-row"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2"
+                  >
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                    <div class="record__title">Others</div>
+                  </div>
+                  <div class="record__value text-end">
+                    {{
+                      +(statistics1?.mainTours?.split("-"))![0] +
+                        +(statistics1?.tourFinals?.split("-"))![0] +
+                        +(statistics1?.challengers?.split("-"))![0] +
+                        +(statistics1?.futures?.split("-"))![0]
+                    }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="recent__form--title pt-3">Recent Form</div>
+              <div class="d-flex flex-wrap mb-3 mb-md-0">
+                <div
+                  *ngFor="let result of statistics1?.recentGames"
+                  class="recent__form__result"
+                  [class.recent__form__result--win]="result === 'w'"
+                  [class.recent__form__result--lose]="result === 'l'"
+                >
+                  {{ result === "w" ? "W" : "L" }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-md-end">
+          <div
+            class="d-flex justify-content-between gap-container flex-md-row flex-row-reverse profile2-container"
+          >
+            <div class="py-md-3 py-2">
+              <div class="record__value pb-3 player-name" (click)="navigateToProfile(playerTwo.name)">{{ playerTwo.name }}</div>
+              <div class="d-flex rank-data">
+                <div>
+                  <div class="record__title">Best Rank</div>
+                  <div class="record__value">
+                    {{playerTwo.bestRank}}
+                    <span
+                      *ngIf="statistics2?.bestRank?.date">({{
+                        statistics2?.bestRank?.date | date : "dd-MM-yy"
+                      }})</span
+                    >
+                  </div>
+                </div>
+                <div class="px-2"><img src="assets/icons/divider.svg" style="height:92%"/></div>
+                <div>
+                  <div class="record__title">Ranking</div>
+                  <div class="ranking--rank">
+                    {{playerTwo.currentRank ? playerTwo.currentRank : "-"}}
+                    <span>({{ newDate | date : "dd-MM-yy" }})</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="profile-image">
+                <img
+                  class="image"
+                  [src]="getImageUrl(playerTwo?.image)"
+                  onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+                  class="header__container-image"
+                />
+              </div>
+              <div
+                class="d-flex align-items-center mb-4 country-wrapper"
+              >
+                <img
+                  [src]="'assets/icons/flags/' + [playerTwo.contryAcr] + '.svg'"
+                  style="width: 1.7em"
+                />
+                <p class="country-name mb-0 text-uppercase">
+                  {{ playerTwo.country }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between gap-container">
+            <div class="w-100">
+              <div
+                class="d-flex flex-wrap flex-md-column justify-content-between score-container"
+                style="margin-left: auto"
+              >
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 d-md-none flex-md-row flex-column-reverse"
+                >
+                  <div class="record__value text-end">
+                    {{ statistics2?.totalTitles }}
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-row-reverse"
+                  >
+                    <div class="record__title">Titles</div>
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-column-reverse"
+                >
+                  <div class="record__value text-end">
+                    {{ playerTwo.playerStat.slamWin }}
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-row-reverse"
+                  >
+                    <div class="record__title">Grand Slams</div>
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-column-reverse"
+                >
+                  <div class="record__value text-end">
+                    {{ playerTwo.playerStat.masterWin }}
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-row-reverse"
+                  >
+                    <div class="record__title">Masters</div>
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-column-reverse"
+                >
+                  <div class="record__value text-end">
+                    {{
+                      +(statistics2?.mainTours?.split("-"))![0] +
+                        +(statistics2?.tourFinals?.split("-"))![0] +
+                        +(statistics2?.challengers?.split("-"))![0] +
+                        +(statistics2?.futures?.split("-"))![0]
+                    }}
+                  </div>
+                  <div
+                    class="d-flex justify-content-between align-items-center gap-2 flex-md-row flex-row-reverse"
+                  >
+                    <div class="record__title">Others</div>
+                    <div class="record__icon">
+                      <img src="/assets/icons/win-gray.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="recent__form--title pt-3">Recent Form</div>
+              <div class="d-flex flex-wrap justify-content-md-end">
+                <div
+                  *ngFor="let result of statistics2?.recentGames"
+                  class="recent__form__result"
+                  [class.recent__form__result--win]="result === 'w'"
+                  [class.recent__form__result--lose]="result === 'l'"
+                >
+                  {{ result === "w" ? "W" : "L" }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="ps-3 pe-3 d-none d-md-block"
+              style="border-left: 1px dashed white"
+            >
+              <div
+                class="d-flex justify-content-between align-items-center gap-2 mt-1"
+              >
+                <div class="record__title">Titles</div>
+                <div class="record__icon">
+                  <img src="/assets/icons/win-gray.svg" alt="" />
+                </div>
+              </div>
+              <div class="record__value text-start ps-2">
+                {{ statistics2?.totalTitles }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row pb-3 hr">
+  <div class="col text-center gray-background top-radius">
+    <div class="row profile-pic">
+      <img
+        [src]="playerOne.image"
+        onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+        class="w-100 p-0 top-radius"
+        style="object-fit: cover"
+      />
+    </div>
+    <div class="row mt-3 mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ statistics1?.totalTitles }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Total</small>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.playerStat.slamWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Slam</small>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.playerStat.masterWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Mast</small>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <img src="assets/icons/prize.svg" />
+      </div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.playerStat.maintourWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Main</small>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.playerStat.challengersWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Chall</small>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.playerStat.futuresWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Minor</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 row text-center user-info">
+    <div class="col-12 p-0">
+      <a
+        class="h5 text-center fw-bold player-name profile-link"
+        [routerLink]="navigateToProfile(playerOne.name)"
+        >{{ playerOne.name }}</a
+      >
+      <app-country-flag
+        [countryCode]="playerOne.contryAcr"
+        [hideCountryBySize]="true"
+      ></app-country-flag>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.currentRank ? playerOne.currentRank : "-" }}
+        </p>
+        <small class="text-capitalize player-info__match">Rank</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.bestRank }}
+        </p>
+        <small class="text-capitalize player-info__match">high</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ getAge(playerOne.birthday) }}
+        </p>
+        <small class="text-capitalize player-info__match">age</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerOne.plays[0] }}
+        </p>
+        <small class="text-capitalize player-info__match">plays</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col d-flex flex-column justify-content-center d-none d-md-block">
+    <div class="row text-nowrap mt-5">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.total1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center fw-bold">
+        <p>total</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.total2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.hard1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white dark-blue">hard</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.hard2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.clay1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white orange">clay</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.clay2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.iHard1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white blue">indoor</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.iHard2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.grass1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white green">grass</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.grass2 }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 row text-center user-info">
+    <div class="col-12 p-0">
+      <a
+        class="h5 text-center fw-bold player-name profile-link"
+        [routerLink]="navigateToProfile(playerTwo.name)"
+        >{{ playerTwo.name }}</a
+      >
+      <app-country-flag
+        [countryCode]="playerTwo.contryAcr"
+        [hideCountryBySize]="true"
+      ></app-country-flag>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.currentRank ? playerTwo.currentRank : "-" }}
+        </p>
+        <small class="text-capitalize player-info__match">Rank</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.bestRank }}
+        </p>
+        <small class="text-capitalize player-info__match">high</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ getAge(playerTwo.birthday) }}
+        </p>
+        <small class="text-capitalize player-info__match">age</small>
+      </div>
+    </div>
+
+    <div class="col-12 user-info__container">
+      <div
+        class="user-info__container-item d-flex flex-column justify-content-center align-content-center h-100 mx-0 mx-md-3"
+      >
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo &&  playerTwo.plays &&  playerTwo.plays[0] }}
+        </p>
+        <small class="text-capitalize player-info__match">plays</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="col text-center gray-background pb-3">
+    <div class="row profile-pic">
+      <img
+        [src]="playerTwo.image"
+        onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+        class="w-100 p-0 top-radius"
+        style="object-fit: cover"
+      />
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ statistics2?.totalTitles }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Total</small>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.playerStat.slamWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Slam</small>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.playerStat.masterWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Mast</small>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <img src="assets/icons/prize.svg" />
+      </div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.playerStat.maintourWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Main</small>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.playerStat.challengersWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Chall</small>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-4 p-0">
+        <p class="m-0 fw-bold player-info__match-count">
+          {{ playerTwo.playerStat.futuresWin }}
+        </p>
+        <small class="text-capitalize m-0 player-info__match">Minor</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row d-md-none d-flex justify-content-center">
+  <div class="col-8 d-flex flex-column justify-content-center">
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.total1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center fw-bold">
+        <p>total</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.total2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.hard1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white dark-blue">hard</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.hard2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.clay1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white orange">clay</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.clay2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.iHard1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white blue">indoor</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.iHard2 }}</p>
+      </div>
+    </div>
+
+    <div class="row text-nowrap mt-3">
+      <div class="col-3 pe-3 ps-0 fw-bold">
+        <p class="text-center text-nowrap">{{ surfaceData.grass1 }}</p>
+      </div>
+      <div class="col-6 p-0 text-capitalize text-center">
+        <p class="text-white green">grass</p>
+      </div>
+      <div class="col-3 pe-0 ps-3 fw-bold">
+        <p class="text-center">{{ surfaceData.grass2 }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,94 @@
+@import '../../../../../styles/colors';
+:host::ng-deep {
+  select, option, span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container, span, td, button, .result-loose, .result-win {
+    font-size: 10px !important;
+  }
+  h5 {
+    font-size: 14px !important;
+  }
+  .empty-span {
+    height: 2.5em
+  }
+}
+
+table {
+  overflow-x: auto;
+  border-collapse: separate !important;
+}
+
+.tournament-name
+{
+  font-size: 14px;
+  font-weight: 600;
+  color: $secondary-text;
+
+  &:hover {
+    color: $primary-text;
+  }
+
+  @media (max-width: 992px) {
+    font-size: 10px;
+  }
+  ::ng-deep .link {
+      color: $primary-text !important;
+      &:hover {
+          color: $secondary-text !important;
+        }
+    }
+}
+
+.text-matches{
+  font-size:14px;
+  font-weight: 400;
+  color: $secondary-text !important;
+
+  @media (max-width: 992px) {
+    font-size: 10px;
+  }
+  &:hover {
+    color: $primary-text;
+  }
+ ::ng-deep .link{
+  color: $secondary-text !important;
+  &:hover {
+      color: $primary-text !important;
+    }
+ }
+}
+
+.table-strip{
+  &>tbody>tr:nth-child(odd)>td,
+  &>tbody>tr:nth-child(odd)>th {
+    background-color: $dark-gray; // Choose your own color here
+  }
+
+  &>tbody>tr:nth-child(odd)>td:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+
+    @media (max-width: 992px) {
+      padding: 4px 10px !important;
+    }
+  }
+
+  &>tbody>tr:nth-child(odd)>td:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    @media (max-width: 992px) {
+      padding: 4px 10px !important;
+    }
+  }
+}
+
+::ng-deep .h2h-matches-select {
+  select {
+    font-size: 14px !important;
+  }
+}

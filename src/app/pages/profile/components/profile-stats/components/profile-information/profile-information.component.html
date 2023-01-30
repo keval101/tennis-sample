@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="searchbar d-flex align-items-center">
+    <button
+      class="btn-h2h bg-light-gray border-radius text-nowrap"
+      (click)="focusToSearch()"
+    >
+      H2H With
+    </button>
+    <div
+      #searchInput
+      class="search-container profile-h2h-search"
+      searchInput
+      [placeHolderText]="'Search Player'"
+      [type]="info.type"
+      [listResult]="h2hProfiles"
+      [name]="info.name"
+      [showBorder]="false"
+      [size]="'short'"
+      (eventSubmit)="searchProfiles($event)"
+      [isDebounce]="true"
+    ></div>
+  </div>
+
+  <div class="information-wrapper bg-white px-md-3 table-shadow">
+    <table class="table m-0" *ngIf="info && statistics">
+      <tbody>
+        <tr>
+          <td class="p-1 p-md-2">Age</td>
+          <td class="p-1 p-md-2 text-end">
+            {{ birthday }} ({{ info.birthday | date : "dd-MM-yyyy" }})
+          </td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Country</td>
+          <td class="p-1 p-md-2 text-end align-middle">
+            <img
+              [src]="'assets/icons/flags/' + info.country.acronym + '.svg'"
+              style="width: 1.7em"
+            /><span class="ms-1">{{ info.country.name }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Birthplace</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.birthplace }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Height</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.height }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Weight</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.weight }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Plays</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.plays }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Backhand</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.backhand }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Favorite Surface</td>
+          <td class="p-1 p-md-2 text-end">
+            <img
+              [src]="
+                'assets/icons/' +
+                statistics.favouriteCourt?.surface?.toLowerCase() +
+                '.svg'
+              "
+              style="width: 1.7em"
+            />
+            <span class="ms-1" *ngIf="statistics.favouriteCourt?.surface">
+              {{ statistics.favouriteCourt!.surface }}
+              {{
+                statistics.favouriteCourt!.wins! /
+                  (statistics.favouriteCourt!.wins +
+                    statistics.favouriteCourt!.losses) | percent
+              }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Coach</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.coach }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Turned Pro</td>
+          <td class="p-1 p-md-2 text-end">{{ info.information.turnedPro }}</td>
+        </tr>
+        <tr>
+          <td class="p-1 p-md-2">Player Status</td>
+          <td class="p-1 p-md-2 text-end">
+            {{ info.information.playerStatus }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

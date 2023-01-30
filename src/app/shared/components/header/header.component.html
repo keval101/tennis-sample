@@ -1,0 +1,42 @@
+<div class="navbar navbar-expand-lg header justify-content-center sticky-top px-4 py-4">
+  <div class="container-sm nav-container row align-items-center align-content-center justify-content-center px-1 px-md-3">
+    <div class="logo col-md-2 col-3 header-logo link" routerLink="/">
+      <img src="assets/images/brand-logo.png" alt="" />
+    </div>
+    <div class="search-header-container put-forward">
+      <app-search-input-header
+        сlass="col-md-4 col-7"
+        [listResult]="elasticSearch"
+        [showBorder]="true"
+        [size]="'short'"
+        [isDebounce]="true"
+        (eventSubmit)="searchProfilesHeader($event)"
+        clickOutside
+        (clickOutside)="clearSearchResult($event)"
+      >
+      </app-search-input-header>
+    </div>
+    <div class="text-nowrap select-header-container d-flex d-lg-none">
+      <div class="nav-item d-flex align-items-center">
+        <app-old-selector [options]="testNavigation" (change)="navigation()"></app-old-selector>
+      </div>
+    </div>
+
+    <div class="col d-md-block" *ngIf="isShowMenu">
+      <div class="row text-nowrap">
+        <nav class="navbar navbar-expand-lg col-12 pt-2 pb-0 pt-md-0">
+          <ul class="navbar-nav text-nowrap flex-row justify-content-end w-100">
+            <li class="nav-item me-2"><a routerLink="/upcoming-todays-tennis-matches" class="py-0 py-md-2 nav-link"><img class="me-1" src="assets/icons/matches.svg">Matches</a></li>
+            <li class="nav-item me-2"><a (click)="routeToCalendar()" class="py-0 py-md-2 nav-link"><img class="me-1" src="assets/icons/calendar.svg">Calendar</a></li>
+            <li class="nav-item"><a routerLink="/h2h-search" class="py-0 py-md-2 nav-link"><img class="me-1" src="assets/icons/users.svg">H2H</a></li>
+            <li class="nav-item"><a routerLink="/men-atp-rankings" class="py-0 py-md-2 nav-link"><img class="me-1" src="assets/icons/trophy.png">Rankings</a></li>
+            <li class="nav-item me-2"><a routerLink="/point-by-point-analysis" class="py-0 py-md-2 nav-link"><img class="me-1" src="assets/icons/matches.svg">Points</a></li>
+            <li class="nav-item d-flex align-items-center justify-content-end s-select-bottom">
+              <app-old-selector [options]="testNavigation" (change)="navigation()"></app-old-selector>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

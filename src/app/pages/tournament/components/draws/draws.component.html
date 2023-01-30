@@ -1,0 +1,27 @@
+<div class="container margin-container overflow-hidden p-1 p-md-2" *ngIf="selectedDraw.length">
+  <div class="row">
+    <h1 class="text-uppercase draw-header">
+      {{ tournamentName }} Draws
+      <app-tournament-year-picker
+        [isWhiteArrayDownIcon]="false"
+        [selectedYear]="currentYear"
+      ></app-tournament-year-picker>
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col px-0">
+      <app-tab
+        class="tournament-tabs bg-white"
+        [actives]="actives"
+        (activeChanged)="changeActive($event)"
+      ></app-tab>
+    </div>
+  </div>
+
+  <div
+    class="row bg-white draw-table-container pb-1 text-nowrap overflow-x-auto"
+    drawTable
+    [draws]="selectedDraw"
+  ></div>
+</div>

@@ -1,0 +1,99 @@
+@import "../../../../../../../styles/colors";
+.information-wrapper {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 0.25rem 2rem 0.9rem !important;
+
+  @media (max-width: 992px) {
+    padding: 16px !important;
+  }
+  &__header {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+table,
+p,
+span,
+button,
+::ng-deep .search-container {
+  font-size: 14px;
+}
+
+@media (max-width: 992px) {
+  td,
+  span,
+  p,
+  button,
+  input,
+  span {
+    font-size: 9px;
+  }
+
+  :host::ng-deep .search-icon {
+    transform: translate(-90%, -7%);
+  }
+}
+
+.searchbar {
+  margin: 1.25rem 0;
+  padding: 0;
+
+  @media (max-width: 992px) {
+    margin: 10px 0;
+  }
+
+  .btn-h2h {
+    color: #12253d;
+    font-size: 16px;
+    background-color: #e5ebf1;
+    padding: 12px 24px;
+    margin-right: 10px;
+    transition: 0.3s;
+
+    @media (max-width: 992px) {
+      font-size: 9px !important;
+      padding: 6px 16px;
+    }
+
+    &:hover {
+      background: #cbccce;
+    }
+  }
+
+  .search-container {
+    width: 100%;
+  }
+}
+
+tbody tr {
+  font-size: 14px;
+  text-transform: capitalize;
+  line-height: 18px;
+
+  td {
+    padding: 1rem 0 !important;
+    color: $primary-text;
+
+    @media (max-width: 992px) {
+      padding: 6px 0 !important;
+    }
+  }
+
+  :first-child {
+    color: $secondary-text !important;
+  }
+
+  :last-child {
+    font-weight: 600;
+    text-align: right;
+  }
+}
+
+.profile-h2h-search {
+  position: relative;
+
+  .list-modal {
+    top: 100%;
+  }
+}

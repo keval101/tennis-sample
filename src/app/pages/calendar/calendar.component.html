@@ -1,0 +1,72 @@
+<div class="container ">
+  <div class="row p-2">
+    <div class="col">
+      <div class="row mt-4 bg-white d-flex justify-content-center">
+        <div class="calender-header text-uppercase">
+          ATP / WTA Calendars
+        </div>
+        <div class="col-md-8 p-4">
+           <app-tab
+          class="calender"
+          [actives]="actives"
+          (activeChanged)="changeActive($event)"
+          [currentActive]="currentSelectedType"
+        ></app-tab>
+        </div>
+      </div>
+      
+      <div class="search-container p-0">
+        <div class="row align-items-center">
+          <div
+            class="search-box px-0"
+            searchInput
+            [showBorder]="false"
+            [size]="'short'"
+            (eventSubmit)="searchTournaments($event)"
+            [isDebounce]="true"
+          ></div>
+
+          <form
+            class="select-inputs d-flex align-items-center justify-space-between col p-0"
+            [formGroup]="filterFormGroup"
+          >
+            <div class="col p-0 d-flex filter-selector">
+              <app-selector
+              class="level-selector"
+                [options]="levelFilter"
+                [formControl]="getFormControl('level')"
+                ngDefaultControl
+              ></app-selector>
+            </div>
+            <div class="col p-0 d-flex filter-selector">
+              <app-selector
+                class="surface-selector"
+                [options]="surfacesFilter"
+                [formControl]="getFormControl('surfaces')"
+                ngDefaultControl
+              ></app-selector>
+            </div>
+            <div class="col p-0 d-flex filter-selector flex-grow-0" *ngIf="yearFilter[0] != undefined">
+              <app-selector
+              class="date-selector"
+                [options]="yearFilter"
+                [formControl]="getFormControl('year')"
+                [defaultValue]="yearFilter[0].value"
+                ngDefaultControl
+              ></app-selector>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <app-calendar-table
+        [matches]="matchGrouped"
+        [type]="type"
+      ></app-calendar-table>
+    </div>
+
+    <div class="col col-lg-4 col-md-6 d-none d-md-block sidebar-container">
+      <app-sidebar [showAtpRanking]="false"></app-sidebar>
+    </div>
+  </div>
+</div>

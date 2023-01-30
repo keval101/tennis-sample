@@ -1,0 +1,144 @@
+@import '../../../../../../../styles/colors';
+
+.groups {
+  margin: 24px 0;
+  width: fit-content;
+}
+
+::ng-deep .groups .tab {
+  background: $light-gray !important;
+
+  &.active-tab {
+    background: #193050 !important
+  }
+
+}
+@media (max-width: 992px) {
+  h5 {
+    font-size: 12px !important;
+  }
+  ::ng-deep span {
+    font-size: 8px !important;
+  }
+}
+
+::ng-deep .match-stats {
+  app-selector {
+    width: fit-content;
+    background-color: transparent;
+  }
+}
+
+::ng-deep .cards-container {
+  padding: 24px 32px;
+  &:last-child {
+    padding: 24px 32px 32px;
+  }
+
+  &:not(:last-child) {
+      border-bottom: 1px dashed #dde1e6;
+    }
+
+  app-short-table {
+
+    &>div:first-child {
+        // padding: 0 32px 0 0 !important;
+        // border-right: 1px dashed #DDE1E6;
+    
+        &::-webkit-scrollbar {
+          width: 2px;
+          padding-right: 8px;
+          display: none;
+        }
+    
+        &::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+          background: #888;
+        }
+    
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      }
+    
+      tbody>tr>td {
+        font-size: 14px !important;
+        padding: 14px !important;
+
+        @media (max-width: 992px) {
+      padding: 6px !important;
+    }
+      }
+    
+      tbody>tr>td:first-child {
+        padding-left: 0 !important;
+        color: #697077;
+      }
+    
+      tbody>tr>td:nth-child(2) {
+        font-weight: 600 !important;
+        color: #3a63f3;
+      }
+    
+      tbody>tr>td:nth-child(3) {
+        color: #12253d;
+        text-align: end !important;
+      }
+    }
+    
+    .table-title {
+      color: #12253d;
+      font-weight: 600;
+    }
+    
+    ::ng-deep .table-right-border {
+      app-short-table {
+        &>div:first-child {
+          padding: 0 32px 0 0 !important;
+          border-right: 1px dashed #dde1e6;
+
+              @media (max-width: 992px) {
+      padding: 0 16px 0 0 !important;
+    }
+        }
+      }
+    }
+    
+    ::ng-deep .table-left-border {
+      app-short-table {
+        &>div:first-child {
+          padding-right: 0 !important;
+          padding-left: 32px !important;
+          // border-right: 1px dashed #DDE1E6;
+          @media (max-width: 992px) {
+            padding-left: 16px !important;
+          }
+        }
+      }
+    
+      h5 {
+        padding-left: 32px !important;
+        @media (max-width: 992px) {
+            padding-left: 16px !important;
+          }
+      }
+    }
+    }
+
+@media (max-width: 992px) {
+  .cards-container {
+      padding: 12px 16px;
+      &:last-child {
+          padding: 12px 16px 16px;
+        }
+    }
+  h5 {
+    font-size: 12px !important;
+  }
+  ::ng-deep span {
+    font-size: 8px !important;
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../../../styles/colors';
+.number {
+  border-radius: 5px;
+  background: #193050;
+  color: white;font-size: 14px;
+  
+    @media (max-width: 768px) {
+      font-size: 8px;
+    }
+  }
+@media (max-width: 992px) {
+  p {
+    font-size: 10px;
+  }
+}
+
+.profile-link {
+  transition: 0.2s;
+  cursor: pointer;
+}
+.link {
+  display: block;
+  text-decoration: none;
+  color: #162B46;
+}
+
+.profile-link:hover {
+  color: $secondary-text;
+}

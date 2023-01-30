@@ -1,0 +1,111 @@
+<div class="row information-wrap__header header p-2">
+  <div class="header__top px-0">
+    <div class="">
+      <div class="image-container">
+        <img
+          class="image"
+          [src]="getImageUrl(info?.image)"
+          onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+          class="header__container-image"
+        />
+      </div>
+      <div class="d-flex justify-content-center align-items-center">
+        <img
+          [src]="'assets/icons/flags/' + info?.country?.acronym + '.svg'"
+          style="width: 22px; height: 1rem"
+        />
+        <p class="country-name mb-0 text-uppercase">
+          {{ info?.country?.name }}
+        </p>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between flex-grow-1 name-container flex-wrap">
+      <div class="player-name">{{ info?.name }}</div>
+      <div class="d-flex justify-content-between">
+        <div class="best-rank pe-4 rank-data">
+          <div class="record__title">Ranking</div>
+          <div class="ranking--rank">
+            {{ info?.currentRank || "-" }}
+          </div>
+        </div>
+        <div class="best-rank ps-4">
+          <div class="record__title">Best Rank</div>
+          <div class="best-rank--rank">
+            {{ statistics?.bestRank?.position || "-" }}
+            <span style="font-size: 15px" *ngIf="statistics?.bestRank?.date"
+              >({{ statistics?.bestRank?.date | date : "dd-MM-yyyy" }})</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex px-0 score-data">
+    <div class="">
+      <div class="d-flex gap-2">
+        <div class="record__icon">
+          <img src="/assets/icons/win-gray.svg" alt="" />
+        </div>
+        <div class="record__title">Titles</div>
+      </div>
+
+      <div class="record__value">{{ statistics?.totalTitles }}</div>
+    </div>
+    <div class="">
+      <div class="d-flex gap-2">
+        <div class="record__icon">
+          <img src="/assets/icons/win-gray.svg" alt="" />
+        </div>
+        <div class="record__title">Grand Slams</div>
+      </div>
+
+      <div class="record__value">
+        {{ (statistics?.grandSlam?.split("-"))![0] }}
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex gap-2">
+        <div class="record__icon">
+          <img src="/assets/icons/win-gray.svg" alt="" />
+        </div>
+        <div class="record__title">Masters</div>
+      </div>
+
+      <div class="record__value">
+        {{ (statistics?.master?.split("-"))![0] }}
+      </div>
+    </div>
+    <div class="">
+      <div class="d-flex gap-2">
+        <div class="record__icon">
+          <img src="/assets/icons/win-gray.svg" alt="" />
+        </div>
+        <div class="record__title">Others</div>
+      </div>
+
+      <div class="record__value">
+        {{
+          +(statistics?.mainTours?.split("-"))![0] +
+            +(statistics?.tourFinals?.split("-"))![0] +
+            +(statistics?.challengers?.split("-"))![0] +
+            +(statistics?.futures?.split("-"))![0]
+        }}
+      </div>
+    </div>
+    <div class="">
+      <div class="record__title text-capitalize">Recent Form</div>
+      <div class="d-flex flex-wrap">
+        <div
+          *ngFor="let result of recentForm"
+          class="recent__form__result"
+          [class.recent__form__result--win]="result"
+          [class.recent__form__result--lose]="!result"
+        >
+          {{ result ? "W" : "L" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

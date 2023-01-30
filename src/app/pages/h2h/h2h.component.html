@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row p-2">
+    <div class="col">
+      <div class="row p-0" *ngIf="profiles$ | async as profiles">
+        <app-h2h-information
+          [playerOne]="profiles.player1"
+          [playerTwo]="profiles.player2"
+          [surfaceData]="profiles.surfaceData"
+          [statistics1]="statistics1"
+          [statistics2]="statistics2"
+        ></app-h2h-information>
+      </div>
+
+      <div class="row p-0" *ngIf="profiles$ | async as profiles">
+        <app-h2h-information-table
+          [playerOne]="profiles.player1"
+          [surfaceData]="profiles.surfaceData"
+          [playerTwo]="profiles.player2"
+          [careerData]="careerData"
+        ></app-h2h-information-table>
+      </div>
+
+      <!-- <ng-container *ngIf="(upcomingMatch$ | async) as upcomingMatch">
+        <div class="row">
+          <app-h2h-upcoming-matches [match]="upcomingMatch"></app-h2h-upcoming-matches>
+        </div>
+      </ng-container> -->
+      <ng-container>
+        <div class="row margin-container" *ngIf="upcomingMatch$ | async as upcomingMatch">
+          <app-h2h-upcoming-matches
+            [upcomingMatch]="upcomingMatch"
+          ></app-h2h-upcoming-matches>
+        </div>
+      </ng-container>
+
+      <!-- <ng-container *ngIf="currentStatsPlayerOne && currentStatsPlayerTwo">
+        <app-h2h-event-stats [player1]="currentStatsPlayerOne" [player2]="currentStatsPlayerTwo"></app-h2h-event-stats>
+      </ng-container> -->
+      <ng-container *ngIf="currentStatsPlayerOne && currentStatsPlayerTwo">
+        <div class="row margin-container">
+          <app-h2h-event-stats
+            [player1]="currentStatsPlayerOne"
+            [player2]="currentStatsPlayerTwo"
+          ></app-h2h-event-stats>
+        </div>
+      </ng-container>
+
+      <div class="row margin-container">
+        <app-h2h-players-stats></app-h2h-players-stats>
+      </div>
+
+      <div class="row margin-container">
+        <app-h2h-matches-played [limit]="2"></app-h2h-matches-played>
+      </div>
+
+      <div class="row margin-container">
+        <app-h2h-breakdown-opponents
+        (dataEmit)="playerBreakdownData($event)"
+        ></app-h2h-breakdown-opponents>
+      </div>
+
+      <div class="row margin-container">
+        <app-profile-matches-played
+          [name]="playerOne"
+          [limit]="2"
+          [type]="type"
+        >
+        </app-profile-matches-played>
+      </div>
+
+      <div class="row margin-container">
+        <app-profile-matches-played
+          [name]="playerTwo"
+          [limit]="2"
+          class="mb-5"
+          [type]="type"
+        >
+        </app-profile-matches-played>
+      </div>
+    </div>
+
+    <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container">
+      <app-sidebar [showAtpRanking]="false" [activeType]="type"></app-sidebar>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading> Loading stuff... </ng-template>

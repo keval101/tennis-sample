@@ -1,0 +1,176 @@
+<div class="row">
+  <div class="h2h-header text-uppercase">
+    {{ profileName }} Titles/Finals/Semis
+    <app-year-picker
+      [years]="years"
+      (changeYear)="changeYear($event)"
+    ></app-year-picker>
+    
+  </div>
+</div>
+
+<div class="bg-white row finals-table">
+  <app-tab
+    class="groups"
+    [actives]="activeGroups"
+    (activeChanged)="changeActiveGroup($event)"
+  ></app-tab>
+
+  <ng-container [ngTemplateOutlet]="currentTable?.body || null"></ng-container>
+</div>
+<!-- <div class="row bg-white viewmore-container">
+  <div class="col justify-content-center align-items-center d-flex gap-1">
+    <a class="text-decoration-none text-blue text-uppercase">View more</a>
+    <span><img src="assets/icons/arrow-down.svg"/></span>
+  </div>
+
+ 
+
+  <div class="row">
+    <ng-template #noTitles>
+      <h5>No Finals</h5>
+    </ng-template>
+  </div>
+
+  
+</div> -->
+
+<ng-template #titlesBody>
+  <div class="table-scroll titles-table-wrapper table-responsive">
+    <table class="table titles-table m-0" *ngIf="titles.length; else noTitles">
+      <thead>
+        <tr>
+          <td>Tournaments</td>
+          <td>Surface</td>
+          <td class="text-end">Tournament price money</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-header">
+          <td>2022</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr *ngFor="let title of titles">
+          <td
+            class="d-flex align-items-center "
+            (click)="navigateToTournament(title.name, title.date)"
+          >
+            <img
+              class="flag-img pe-2 cursor-pointer"
+              [src]="'assets/icons/flags/' + title.country.acronym + '.svg'"
+            />
+            <span class="cursor-pointer title-name">{{ title.name }}</span>
+          </td>
+          <td>{{ title.court }}</td>
+          <td>{{ 20212000 }}</td>
+          <td class="text-end">
+            <img src="assets/icons/chart.svg" class="cursor-pointer" (click)="navigateToTournament(title.name, title.date)"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+    <ng-template #noTitles>
+      <app-not-stat [title]="'Titles'"></app-not-stat>
+      <!-- <h5>No Titles</h5> -->
+    </ng-template>
+  </div>
+</ng-template>
+
+<ng-template #finalsBody>
+  <div class="table-scroll titles-table-wrapper table-responsive">
+    <table class="table titles-table m-0" *ngIf="finals.length; else noFinals">
+      <thead>
+        <tr>
+          <td>Tournaments</td>
+          <td>Surface</td>
+          <td class="text-end">Tournament price money</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-header">
+          <td>2022</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr *ngFor="let final of finals">
+          <td
+            class="d-flex align-items-center cursor-pointer"
+            (click)="navigateToTournament(final.name, final.date)"
+          >
+            <img
+              class="flag-img pe-2"
+              [src]="'assets/icons/flags/' + final.country.acronym + '.svg'"
+            />
+            {{ final.name }}
+          </td>
+          <td>{{ final.court }}</td>
+          <td>{{ 20212000 }}</td>
+          <td class="text-end" >
+            <img src="assets/icons/chart.svg"  class="cursor-pointer"
+              (click)="navigateToTournament(final.name, final.date)"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noFinals>
+      <app-not-stat [title]="'Finals'"></app-not-stat>
+      <!-- <h5>No Finals</h5> -->
+    </ng-template>
+  </div>
+</ng-template>
+
+<ng-template #semisBody>
+  <div class="table-scroll titles-table-wrapper table-responsive">
+    <table class="table titles-table m-0" *ngIf="titles.length; else noSemis">
+      <thead>
+        <tr>
+          <td>Tournaments</td>
+          <td>Surface</td>
+          <td class="text-end">Tournament price money</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-header">
+          <td>2022</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr *ngFor="let title of titles">
+          <td
+            class="d-flex align-items-center cursor-pointer"
+            (click)="navigateToTournament(title.name, title.date)"
+          >
+            <img
+              class="flag-img pe-2"
+              [src]="'assets/icons/flags/' + title.country.acronym + '.svg'"
+            />
+            {{ title.name }}
+          </td>
+          <td>{{ title.court }}</td>
+          <td>{{ 20212000 }}</td>
+          <td class="text-end">
+            <img src="assets/icons/chart.svg" class="cursor-pointer" (click)="navigateToTournament(title.name, title.date)"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+
+    <ng-template #noSemis>
+      <app-not-stat [title]="'Semis'"></app-not-stat>
+      <!-- <h5>No Semis</h5> -->
+    </ng-template>
+  </div>
+</ng-template>
+

@@ -1,0 +1,29 @@
+<div class="row bg-white justify-content-center">
+  <div class="col h2h-header">
+    <div class="text-uppercase p-0">CURRENT EVENTS STATS (Super Useful For Predictions)</div>
+  </div>
+</div>
+
+<div class="row justify-content-between bg-white event-header align-items-center">
+  <app-sportsman
+    class="col p-0 text-country"
+    [countryCode]="country"
+    [fullname]="tournament"
+  ></app-sportsman>
+  <div class="col text-end p-0 text-capitalize court-text " >{{court}} <img [src]="'assets/icons/'+court+'.svg'"></div>
+  
+</div>
+
+<div class="row">
+  <div class="col-12 p-0">
+    <app-short-table
+      [showHeader]="true"
+      [headers]="headers"
+      [blueHeader]="true"
+      [hasRightBorder]="true"
+      [tableData]="true"
+      [hasPadding]="true"
+      [data]="playerEventStats"
+    ></app-short-table>
+  </div>
+</div>

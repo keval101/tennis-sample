@@ -1,0 +1,8 @@
+<div class="select-wrapper">
+  <img class="me-1" src="assets/icons/tennis-ball.svg">
+  <select [formControl]="control" (change)="onChange(control.value)">
+    <option *ngFor="let option of options" [value]="option.value">
+      {{option.name}}
+    </option>
+  </select>
+</div>

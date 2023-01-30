@@ -1,0 +1,107 @@
+<div class="row bg-white justify-content-center">
+  <div class="col h2h-header">
+    <div class="text-uppercase p-0 m-0"> {{playerOneName}} vs {{playerTwoName}} H2H MATCHES PLAYED</div>
+  </div>
+  </div>
+  <div class="row justify-content-end bg-white p-md-3 p-2 h2h-matches-select">
+    <div class="col col-md-3 d-flex flex-grow-0 justify-content-lg-end p-0 ">
+    <app-selector
+      [options]="roundFilters"
+      [formControl]="getFormControl('round')"
+    ></app-selector>
+  </div>
+  <div class="col col-md-3 d-flex flex-grow-0 justify-content-lg-end p-0 w-auto">
+    <app-selector
+      [options]="surfaceFilters"
+      [formControl]="getFormControl('court')"
+    ></app-selector>
+  </div>
+  
+</div>
+
+<div class="row">
+  <div class="p-0" *ngIf="matches.length; else noMatchGroups">
+    <div class="bg-white text-nowrap overflow-x-auto pb-1 px-md-4 px-2">
+      <table class="table text-center table-borderless table-strip m-0">
+        <thead>
+        </thead>
+
+        <tbody>
+          <ng-container *ngFor="let match of matches" >
+        <tr class="align-middle " >
+          <td  class="text-start text-uppercase ps-3 pe-3 draw-quartal col-1">
+            <img [src]="'assets/icons/' + match.tournament.court.name.toLowerCase() + '.svg'" >
+            
+          </td>
+          <td colspan="5" class="text-start text-uppercase ps-3 draw-quartal">
+            <a class="m-0 tournament-name text-decoration-none" [routerLink]="navigateToTournament(match.tournament.name, match.date)">{{match.tournament.name}} </a>
+          </td>
+        </tr>
+        <tr class="align-middle">
+          <td class="pt-md-3 pt-2 pb-md-4 pb-2 text-matches col-1"><div>{{match.date | date: 'dd MMM'}}</div><div>{{match.date | date: 'yyyy'}}</div><div>{{match.roundId | shortRound : match.tournament.name }}</div></td>
+          <td class="ps-3 text-start pt-md-3 pt-2 pb-md-4 pb-2 tournament-name col-3">
+            
+            <app-sportsman
+              [fullname]="match.player1.name"
+              [idkLeague]="match.seed1"
+              [countryCode]="match.player1.countryAcr"
+              [hideCountryBySize]="true"
+              [padding]="false"
+            ></app-sportsman>
+          </td>
+
+          <td *ngIf="match?.player1?.stats && match?.player2?.stats; else noStat" class="pt-md-3 pt-2 pb-md-4 pb-2 col-1">
+            <app-match-stat
+              [winner]="match.player1"
+              [looser]="match.player2"
+            ></app-match-stat>
+          </td>
+
+          <td class="ps-4 text-start pt-md-3 pt-2 pb-md-4 pb-2 text-matches col-3" >
+            <app-sportsman
+              [fullname]="match.player2.name"
+              [idkLeague]="match.seed2"
+              [countryCode]="match.player2.countryAcr"
+              [hideCountryBySize]="true"
+              [padding]="false"
+            ></app-sportsman>
+          </td>
+          <td class="p-0 pt-md-3 pt-2 pb-md-4 pb-2 text-end ps-md-0 ps-2">
+            <img src="assets/icons/divider.svg" style="height: 3em" *ngIf="match?.result"/>
+          </td>
+          <td *ngIf="match?.result" class="pt-3 pb-4 text-end text-matches col-2 ps-md-4 ps-2">
+            <div class="d-flex justify-content-end gap-3" *ngIf="match?.result !== 'w/o'">
+              <ng-container *ngFor="let score of getCustomResult(match.result)">
+                  <div class="d-flex flex-column text-matches">
+                    <div [class.text-score]="score[0] > score[1]" class="mb-1">{{score[0]}}</div>
+                    <div [class.text-score]="score[1] > score[0]">{{score[1]}}</div>
+                  </div>
+              </ng-container>
+            </div>
+            <div *ngIf="match?.result === 'w/o'" class="text-center" style="font-size: 1rem;">{{match?.result}}</div>
+          </td>
+        </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row bg-white viewmore-container" *ngIf="currentPage * 10 <= matchesCount">
+  <div class="col justify-content-center align-items-center d-flex  gap-1">
+    <a class="text-decoration-none text-blue text-uppercase" (click)="nextPage()">View more </a>
+    <span><img src="assets/icons/arrow-down.svg"></span>
+  </div>
+</div>
+
+<ng-template #noStat>
+  <td class="no-stat-text">
+    No Stat
+  </td>
+</ng-template>
+
+<ng-template #noMatchGroups>
+  <app-not-stat [title]="'H2H Matches Played'"></app-not-stat>
+  <!-- <h5>No information...</h5> -->
+</ng-template>

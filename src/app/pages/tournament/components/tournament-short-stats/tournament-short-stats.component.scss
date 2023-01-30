@@ -1,0 +1,141 @@
+@import '../../../../../styles//colors';
+@media (max-width: 992px) {
+  h6 {
+    font-size: 12px !important;
+  }
+}
+
+.tournament-title {
+  font-size: 16px;
+  line-height: 20px;
+  color: #193050;
+  padding-left: 32px;
+
+  @media (max-width: 992px) {
+    padding-left: 16px;
+  }
+}
+
+.title-extra-padding {
+  padding-left: 48px;
+}
+
+::ng-deep .past-champions {
+  .short-container {
+    padding-right: 0 !important;
+  }
+}
+
+::ng-deep .most-victories,
+::ng-deep .tournament-points {
+  .short-container {
+    padding: 0 0 0 32px !important;
+    margin: 0 32px 0 0;
+
+    @media (max-width: 992px) {
+      padding: 0 0 0 16px !important;
+      margin: 0 16px 0 0;
+    }
+  }
+}
+
+::ng-deep .most-victories,
+::ng-deep .past-champions {
+  app-short-table {
+    tbody > tr > td:nth-child(2) {
+      color: $primary-text;
+      font-weight: 600;
+      &:hover {
+        color: $secondary-text;
+      }
+    }
+  }
+}
+
+::ng-deep .table-left-border {
+  app-short-table {
+    .short-container {
+      margin-left: 12px;
+    }
+    & > div:first-child {
+      border-left: 1px dashed #dde1e6;
+    }
+  }
+}
+
+::ng-deep .tournament-info {
+  app-short-table {
+    .short-container {
+      padding-right: 0 !important;
+      padding-left: 0;
+      margin-left: 2rem;
+    }
+    tbody > tr > td:last-child {
+      color: #193050;
+      font-weight: 600;
+    }
+  }
+}
+
+::ng-deep .tournament-points {
+  app-short-table {
+    tbody > tr > td:nth-child(2) {
+      text-align: center !important;
+      color: #3a63f3;
+      font-weight: 600;
+    }
+    tbody > tr > td:nth-child(3) {
+      color: #12253d;
+      font-weight: 600;
+    }
+  }
+}
+
+::ng-deep .tournaments-stats-container {
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+
+  app-short-table {
+    .short-container {
+      height: auto;
+
+      @media (max-width: 992px) {
+        padding: 0 16px;
+      }
+    }
+    tbody > tr > td {
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+
+      @media (max-width: 992px) {
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+      }
+    }
+    tbody > tr > td:last-child {
+      text-align: end !important;
+    }
+  }
+}
+
+::ng-deep .table-right-padding {
+  app-short-table {
+    .short-container {
+      padding-right: 30px !important;
+    }
+  }
+}
+
+::ng-deep .table-left-padding {
+  .title-extra-padding {
+    padding-left: 32px !important;
+  }
+  app-short-table {
+    .short-container {
+      margin-left: 0 !important;
+    }
+    & > div:first-child {
+      border-left: none !important;
+    }
+  }
+}

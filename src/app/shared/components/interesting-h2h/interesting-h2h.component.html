@@ -1,0 +1,154 @@
+<div class="row margin-container">
+  <div class="h2h-header text-uppercase">
+    Interesting ATP Tennis Head To Heads
+  </div>
+</div>
+
+<div class="h2h-intresting-body row">
+  <div class="h2h-intresting-container w-100 px-0">
+    <div
+      class="cardComp item"
+      *ngFor="let item of atpH2hData; let i = index"
+      [ngClass]="{
+        'border-less-item': i + 1 === atpH2hData.length / 2,
+        'padding-data': i === atpH2hData.length / 2
+      }"
+    >
+      <!-- (click)="navigateToH2h(item.localteam_id, item.visitorteam_id)" -->
+
+      <div class="interesting-card">
+        <div class="pointer">
+          <div class="interesting-card-item" (click)="navigateToH2h('atp', item.player1.name, item.player2.name)">
+            <span
+              class="text-nowrap"
+              [ngClass]="
+                item.player1Wins > item.player2Wins
+                  ? 'color-blue'
+                  : 'color-gray'
+              "
+            >
+              <app-sportsman
+                [fullname]="item.player1.name"
+                [countryCode]="item.player1.countryAcr"
+                [hideCountryBySize]="true"
+                [padding]="false"
+              ></app-sportsman>
+            </span>
+            <span
+              class="text-nowrap"
+              [ngClass]="
+                item.player1Wins < item.player2Wins
+                  ? 'color-blue'
+                  : 'color-gray'
+              "
+            >
+              <app-sportsman
+                [fullname]="item.player2.name"
+                [countryCode]="item.player2.countryAcr"
+                [hideCountryBySize]="true"
+                [padding]="false"
+              ></app-sportsman>
+            </span>
+            <span class="cursor-pointer">
+              <span
+                [ngClass]="
+                  item.player1Wins > item.player2Wins
+                    ? 'color-blue'
+                    : 'color-gray'
+                "
+                >{{ item.player1Wins }}</span
+              >-<span
+                [ngClass]="
+                  item.player1Wins < item.player2Wins
+                    ? 'color-blue'
+                    : 'color-gray'
+                "
+                >{{ item.player2Wins }}</span
+              ></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-not-stat *ngIf="!atpH2hData.length" [title]="'Interesting ATP Tennis Head To Heads'"></app-not-stat>
+</div>
+
+
+
+<div class="row margin-container">
+  <div class="h2h-header text-uppercase">
+    Interesting WTA Tennis Head To Heads
+  </div>
+</div>
+
+<div class="h2h-intresting-body row">
+  <div class="h2h-intresting-container w-100 px-0">
+    <div
+      class="cardComp item"
+      *ngFor="let item of wtaH2hData; let i = index"
+      [ngClass]="{
+        'border-less-item': i + 1 === wtaH2hData.length / 2,
+        'padding-data': i === wtaH2hData.length / 2
+      }"
+      
+    >
+      
+
+      <div class="interesting-card">
+        <div class="pointer">
+          <div class="interesting-card-item" (click)="navigateToH2h('wta', item.player1.name, item.player2.name)">
+            <span
+              class="text-nowrap"
+              [ngClass]="
+                item.player1Wins > item.player2Wins
+                  ? 'color-blue'
+                  : 'color-gray'
+              "
+            >
+              <app-sportsman
+                [fullname]="item.player1.name"
+                [countryCode]="item.player1.countryAcr"
+                [hideCountryBySize]="true"
+                [padding]="false"
+              ></app-sportsman>
+            </span>
+            <span
+              class="text-nowrap"
+              [ngClass]="
+                item.player1Wins < item.player2Wins
+                  ? 'color-blue'
+                  : 'color-gray'
+              "
+            >
+              <app-sportsman
+                [fullname]="item.player2.name"
+                [countryCode]="item.player2.countryAcr"
+                [hideCountryBySize]="true"
+                [padding]="false"
+              ></app-sportsman>
+            </span>
+            <span class="cursor-pointer">
+              <span
+                [ngClass]="
+                  item.player1Wins > item.player2Wins
+                    ? 'color-blue'
+                    : 'color-gray'
+                "
+                >{{ item.player1Wins }}</span
+              >-<span
+                [ngClass]="
+                  item.player1Wins < item.player2Wins
+                    ? 'color-blue'
+                    : 'color-gray'
+                "
+                >{{ item.player2Wins }}</span
+              ></span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-not-stat *ngIf="!wtaH2hData.length" [title]="'Interesting WTA Tennis Head To Heads'"></app-not-stat>
+</div>

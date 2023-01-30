@@ -1,0 +1,45 @@
+@import "../../../../styles/mixins";
+.title {
+  @include font-params(20px, #21272A, 600, 24px);
+  margin-right: auto;
+
+  @include for-phone-only {
+    font-size: 10px;
+  }
+}
+
+.card {
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+  @include for-phone-only {
+    padding: 10px;
+    margin: 0;
+  }
+}
+
+.title {
+  @include font-params(20px, #21272A, 600, 24px);
+  margin-right: auto;
+
+  @include for-phone-only {
+    font-size: 10px;
+  }
+}
+
+.prediction {
+  @include for-phone-only {
+    border-radius: 4px;
+    padding: 3px 9px 3px 6px;
+    font-size: 7px;
+    margin-top: 12px;
+    height: 22px;
+    width: 63px;
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #376BB2;
+  border-color: #376BB2;
+}

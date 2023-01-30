@@ -1,0 +1,483 @@
+@import "../../../../../styles/colors";
+@import "../../../../../styles/mixins.scss";
+
+.btn-container {
+  display: flex;
+  gap: 10px;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    gap: 6px;
+    padding: .5rem 0;
+  }
+
+    .btn {
+      border-radius: 0.5rem;
+  
+      &-primary {
+        min-width: 104px;
+        padding: 0.25rem 14px;
+        @include font-params(14px, $white, 600, 1rem);
+  
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+          font-size: 10px;
+        }
+  
+        @media (max-width: 768px) {
+          min-width: 68px;
+          padding: 0 12px;
+          font-size: 7px !important;
+          line-height: 13px;
+          border-radius: 4px;
+        }
+      }
+  
+      &-default {
+        padding: 11px 1rem;
+        background: $clr-gray-20;
+        @include font-params(14px, #697077, 400, 1rem);
+  
+        @media only screen and (min-width: 768px) and (max-width: 1024px) {
+          font-size: 10px;
+        }
+  
+        @media (max-width: 768px) {
+          font-size: 7px !important;
+          line-height: 13px;
+          border-left: none;
+          border-radius: 4px;
+          padding: 0.2rem .5rem;
+        }
+  
+        &.btn {
+          &-active {
+            background: $primary;
+            border-left: none;
+            border-radius: 0.5rem;
+            box-shadow: 0px 8px 15px rgba(26, 49, 80, 0.14);
+            @include font-params(14px, $white, 400, 1rem);
+  
+            @media only screen and (min-width: 768px) and (max-width: 1024px) {
+              font-size: 10px;
+            }
+  
+            @media (max-width: 768px) {
+              border-radius: 0.25rem;
+            }
+          }
+        }
+      }
+    }
+}
+
+.section-body {
+  background: #ffffff;
+  padding: 0 32px 16px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  @media (max-width: 768px) {
+    padding: 0 16px 8px;
+  }
+}
+
+.section-header {
+  padding: 26px 12px;
+  text-align: center;
+  background: linear-gradient(90deg, #dfe7ee -56%, rgba(223, 231, 238, 0.18894) 32.51%, rgba(223, 231, 238, 0.04) 48.76%, rgba(223, 231, 238, 0.188462) 68.24%, #dfe7ee 174.74%);
+  text-transform: uppercase;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.5rem;
+  color: #12253d;
+  @media (max-width:992px) {
+    padding: 12px 12px;
+    font-size: 14px;
+  }
+}
+
+.grid-item {
+  display: grid;
+  grid-template-columns: 2fr 5fr 3fr 5fr 2fr 2fr;
+  padding: 9px 32px 11px;
+  border-bottom: 1px solid #dde1e6;
+  align-items: center;
+  font-size: 14px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+    @media (max-width:992px) {
+    font-size: 8px;
+    padding: 4px 16px;
+  }
+}
+
+.grid-header {
+  // margin: 0 16px 8px;
+  background-color: $white;
+  border-radius: 6px;
+  padding: 11px 16px 10px;
+  border-bottom: none;
+  font-size: 12px !important;
+  color:$secondary-text;
+
+  @media (max-width:992px) {
+    font-size: 8px !important;
+    padding: 0 9px;
+    border-radius: 2px;
+    margin: 0 9px 2px;
+  }
+}
+
+
+
+
+
+
+
+
+a,
+a:hover,
+a:link {
+  color: #5f94da;
+}
+
+.match {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #21272a;
+  margin-right: auto;
+  padding: 15px 0;
+
+  @media (max-width: 768px) {
+    font-size: 10px;
+    padding: 15px 0 5px 0;
+  }
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  background-color: transparent;
+  border:none !important;
+}
+
+.date {
+  line-height: 1.2;
+}
+
+.home-title {
+  text-align: right;
+  margin-right: 31px;
+
+  @media (max-width: 768px) {
+    margin-right: 20px;
+  }
+}
+
+.away-title {
+  margin-left: 20px;
+}
+
+.result {
+  width: 3px;
+  height: 23px;
+  margin-right: 23px;
+
+  @media (max-width: 768px) {
+    height: 17px;
+    width: 2px;
+    margin-right: 12px;
+  }
+
+  &-win {
+    background: $win;
+  }
+  &-draw {
+    background: $draw;
+  }
+  &-lost {
+    background: $lost;
+  }
+}
+
+.score {
+  display: flex;
+  margin-left: -19px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    margin-left: -10px;
+  }
+}
+
+.table-grid {
+  padding-top: 0;
+  @media (max-width: 768px) {
+    padding-bottom: 7px;
+  }
+}
+
+.away {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    gap: 4px;
+  }
+}
+
+.image {
+  max-height: 32px;
+
+  @media (max-width: 768px) {
+    max-height: 14px;
+  }
+}
+
+.percent {
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  background-color: $blue;
+  padding: 2px 6px;
+
+  @media (max-width: 992px) {
+    // width: 31px;
+    font-size: 8px;
+    border-radius: 4px;
+  }
+
+  // &-green {
+  //   background: #019633;
+  // }
+
+  // &-orange {
+  //   background: #c99e57;
+  // }
+}
+
+.dash {
+  padding: 0 4px;
+  font-size: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0 2px;
+    font-size: 12px;
+  }
+}
+
+.group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  // border-bottom: 0px solid transparent !important;
+  background-color: #e5ebf1;
+  border-radius: 6px;
+  &_img  {
+    padding: 7px 14px;
+    border-right: 2px solid $white;
+    @media (max-width: 768px) {
+      padding: 4px 14px;
+    }
+  }
+}
+.matches-data {
+  &:not(:last-child) {
+      border-bottom: 1px solid #dde1e6;
+  }
+}
+
+.matches-header {
+  position: relative;
+
+  &>:first-child::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+  }
+}
+
+.grid-item {
+  display: grid;
+  grid-template-columns: 5fr 5fr 6fr;
+  padding: 16px 0;
+  // border-bottom: 1px solid #dde1e6;
+  align-items: center;
+  font-size: 14px;
+  
+
+  @media (max-width: 768px) {
+    font-size: 8px;
+    padding: 8px 0;
+  }
+}
+
+// .grid-header {
+//   margin:0;
+//   background-color: $white;
+//   border-radius: 0;
+// }
+
+// .upcoming-matches {
+//   margin-top: 20px;
+// }
+
+// ::ng-deep .text-right {
+//   text-align: unset;
+// }
+
+.prediction {
+  color: #fff;
+  background-color: $blue;
+  padding: 4px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+
+  &:hover {
+    background: $hover-blue;
+    box-shadow: 0px 8px 15px rgba(78, 115, 244, 0.2);
+  }
+
+  @media (max-width:992px) {
+    font-size: 8px;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+}
+
+.league-link {
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+  font-weight: 600;
+  color:$secondary-text;
+  &:hover {
+    color: $primary-text;
+  }
+
+  @media (max-width:992px) {
+    font-size: 8px;
+  }
+}
+
+.h2h-link {
+  color: $primary-text;
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    color: $secondary-text !important;
+  }
+  @media (max-width:992px) {
+    font-size: 8px;
+  }
+}
+
+.date {
+  background: white;
+  display: flex;
+  border-radius: 6px;
+  height: 54px;
+  margin-bottom: 20px;
+}
+
+.date button {
+  background: white;
+  color: #21272a;
+  margin: 9px 18px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+}
+.active {
+  background: #376bb2 !important;
+  color: white !important;
+}
+.border {
+  height: 30px;
+  border: 1px solid #c1c7cd;
+  margin: auto;
+}
+
+select {
+  padding: 0 11px;
+  background: transparent;
+  height: 28px;
+  border: none;
+  outline: none;
+  margin-left: 1rem;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  color: #697077;
+}
+
+.dates {
+  margin-bottom: 15px !important;
+}
+
+@media (max-width: 992px) {
+  // div,
+  select,
+  option {
+    font-size: 12px !important;
+  }
+}
+
+.odds-scr span {
+  color: #fff;
+  font-weight: 600;
+  padding: 3px 12px;
+  background: #3a63f3;
+  border-radius: 6px;
+  @media (max-width: 992px) {
+      font-size: 8px;
+      border-radius: 4px;
+    }
+}
+
+.odds-scr {
+  :first-child {
+    margin-right: 0.5rem;
+  }
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: $blue;
+  font-weight: 600;
+  padding: 6px 18px;
+  border:0px solid;
+
+  &:hover {
+      background: $hover-blue;
+      box-shadow: 0px 8px 15px rgba(78, 115, 244, 0.2);
+    }
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  @media (max-width:992px) {
+    font-weight: 400;
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}

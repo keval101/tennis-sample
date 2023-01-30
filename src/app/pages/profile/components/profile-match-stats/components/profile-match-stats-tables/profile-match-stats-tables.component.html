@@ -1,0 +1,97 @@
+<div class="bg-white match-stats row">
+  <div
+    class="row header justify-content-center align-items-center"
+    *ngIf="yearFilters.length > 1"
+  >
+    <app-tab
+      class="groups"
+      [actives]="activeGroups"
+      (activeChanged)="changeActiveGroup($event)"
+    ></app-tab>
+    <app-selector
+      [defaultValue]="yearFilters[1].value"
+      [options]="yearFilters"
+      [formControl]="getFormControl('year')"
+    ></app-selector>
+  </div>
+</div>
+  <ng-container [ngTemplateOutlet]="currentTable?.body || null"></ng-container>
+<ng-template #clayFilter>
+  <app-tab
+    class="groups"
+    [actives]="activeGroups"
+    (activeChanged)="changeActiveGroup($event)"
+  ></app-tab>
+</ng-template>
+
+<ng-template #grassFilter>
+  <app-tab
+    class="groups"
+    [actives]="activeGroups"
+    (activeChanged)="changeActiveGroup($event)"
+  ></app-tab>
+</ng-template>
+
+<ng-template #indoorFilter>
+  <app-tab
+    class="groups"
+    [actives]="activeGroups"
+    (activeChanged)="changeActiveGroup($event)"
+  ></app-tab>
+</ng-template>
+
+<ng-template #allFilter>
+  <app-tab
+    class="groups"
+    [actives]="activeGroups"
+    (activeChanged)="changeActiveGroup($event)"
+  ></app-tab>
+</ng-template>
+
+<ng-template #defaultBody>
+  <div class="cards-container row bg-white" *ngIf="serveStats && returnStats">
+    
+      <div class="col-6 px-0 table-right-border">
+        <div class="d-flex justify-content-between">
+          <h5 class="table-title">Service Stats</h5>
+        </div>
+        <app-short-table
+          [headers]="headers"
+          [data]="serveStats"
+        ></app-short-table>
+      </div>
+
+      <div class="col-6 px-0 table-left-border">
+        <div class="d-flex justify-content-between">
+          <h5 class="table-title">Return Stats</h5>
+          </div>
+        <app-short-table
+          [headers]="headers"
+          [data]="returnStats"
+        ></app-short-table>
+      </div>
+    
+  </div>
+  <div class="cards-container row bg-white table-bottom" *ngIf="breakServe && breakRtn">
+      <div class="col-6 px-0 table-right-border">
+        <div class="d-flex justify-content-between">
+          <h5 class="table-title">Break Points (Serve)</h5>
+        </div>
+        <app-short-table
+          [headers]="headers"
+          [data]="breakServe"
+        ></app-short-table>
+      </div>
+
+      <div class="col-6 px-0 table-left-border">
+        <div class="d-flex justify-content-between">
+          <h5 class="table-title">Break Points (Rtn)</h5>
+        </div>
+        <app-short-table
+          [headers]="headers"
+          [data]="breakRtn"
+        ></app-short-table>
+      </div>
+  </div>
+</ng-template>
+

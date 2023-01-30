@@ -1,0 +1,126 @@
+<table class="table draw-table text-center mb-1">
+  <thead>
+    <tr class="text-uppercase text-start">
+      <td colspan="2" class="ps-2 ps-md-3 pe-0 py-md-3 py-1">
+        <span class="ps-2 py-2">player 1</span>
+      </td>
+      <td class="px-0 text-center py-md-3 py-1">
+        <span class="py-2 px-1">player 2</span>
+      </td>
+      <td class="text-center px-0 py-md-3 py-1">
+        <span class="py-2 px-1">scr</span>
+      </td>
+      <td class="text-center pe-2 pe-md-3 ps-0 py-md-3 py-1 table-last-element">
+        <span class="pe-2 py-2">h2h</span>
+      </td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let draw of groupDraws; let i = index" class="align-middle">
+      <td
+        colspan="5"
+        class="text-start text-capitalize draw-table-header ps-3 ps-md-4 draw-quartal draws-header"
+        *ngIf="draw?.group"
+      >
+        {{ getGroupName(draw.group) }}
+      </td>
+
+      <td class="text-start ps-md-4 ps-3" *ngIf="draw?.player1 && !draw.group">
+        <app-sportsman
+          class="winner"
+          [idkLeague]="draw.player1.seed"
+          [fullname]="draw.player1.name"
+          [countryCode]="draw.player1.countryAcr"
+          [hideCountryBySize]="true"
+        ></app-sportsman>
+      </td>
+
+      <td *ngIf="draw?.player1?.stats && draw?.player2?.stats; else noStat">
+        <app-match-stat
+          [winner]="draw?.player1"
+          [looser]="draw?.player2"
+        ></app-match-stat>
+      </td>
+
+      <ng-template #noStat>
+        <td *ngIf="draw?.player1 && draw.result != 'bye'" class="no-stat-text">
+          No Stat
+        </td>
+        <td *ngIf="draw.result == 'bye'"></td>
+      </ng-template>
+
+      <td
+        class="text-start ps-md-4 ps-3"
+        *ngIf="draw?.player2 && !draw.group; else noPlayer"
+      >
+        <app-sportsman
+          class="runnerup"
+          [idkLeague]="draw.player2.seed"
+          [fullname]="draw.player2.name"
+          [countryCode]="draw.player2.countryAcr"
+          [hideCountryBySize]="true"
+        ></app-sportsman>
+      </td>
+
+      <ng-template #noPlayer>
+        <td *ngIf="draw?.player1" colspan="2">Bye</td>
+      </ng-template>
+
+      <td *ngIf="draw?.player1">
+        <div
+          class="d-flex justify-content-end gap-3 match-scores"
+          *ngIf="draw?.result"
+        >
+          <ng-container *ngFor="let score of getCustomResult(draw!.result)">
+            <div class="d-flex flex-column text-matches">
+              <div [class.text-score]="score[0] > score[1]" class="mb-1">
+                {{ score[0] }}
+              </div>
+              <div [class.text-score]="score[1] > score[0]">
+                {{ score[1] }}
+              </div>
+            </div>
+          </ng-container>
+          <span *ngIf="draw?.result === 'bye'" class="no-stat-text">bye</span>
+        </div>
+
+        <!-- <ng-template #coef>
+          <div
+            class="odds-scr"
+            *ngIf="draw?.player2?.odd != null && draw?.player1?.odd != null"
+          >
+            <span>{{ draw.player1.odd | number : "1.2" }}</span>
+            <span>{{ draw.player2.odd | number : "1.2" }}</span>
+          </div>
+        </ng-template> -->
+      </td>
+
+      <td
+        class="pe-md-4 pe-2 h2h table-last-element"
+        *ngIf="
+          draw?.player1 &&
+          draw.player2 &&
+          draw?.player1?.name &&
+          draw?.player2?.name
+        "
+        [class.h2h-link]="
+          draw?.player1?.name != 'Unknown Player' &&
+          draw?.player2?.name != 'Unknown Player'
+        "
+        (click)="navigateToH2h(draw?.player1?.name, draw?.player2?.name)"
+      >
+        {{
+          draw?.h2h
+            ? draw?.h2h.replace("-", "/")
+            : !draw?.h2h &&
+              draw?.player1?.name !== "Unknown Player" &&
+              draw?.player2?.name !== "Unknown Player"
+            ? "0/0"
+            : ""
+        }}
+      </td>
+      <td *ngIf="draw.result == 'bye'"></td>
+    </tr>
+  </tbody>
+</table>

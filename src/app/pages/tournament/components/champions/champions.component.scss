@@ -1,0 +1,204 @@
+@import '../../../../../styles/colors';
+.champions-header {
+  background: linear-gradient(90deg, #DFE7EE -56%, rgba(223, 231, 238, 0.18894) 32.51%, rgba(223, 231, 238, 0.04) 48.76%, rgba(223, 231, 238, 0.188462) 68.24%, #DFE7EE 174.74%);
+  color: #12253D;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 0 !important;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-bottom: 0 !important;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+    padding: 14px 0 !important;
+  }
+}
+
+::ng-deep .champions-tabs {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 24px 0;
+  .tab {
+    flex-grow: initial !important;
+    background-color: #F5F7F9 !important;
+    &.active-tab {
+      background: #193050 !important
+    }
+  }
+}
+@media (max-width: 992px) {
+  .container, span, button {
+    font-size: 8px;
+  }
+  .empty-span-little {
+    height: 3.5em
+  }
+  h5 {
+    font-size: 14px;
+  }
+}
+
+.text-matches {
+  font-size: 14px;
+  color: $secondary-text;
+  @media (max-width:992px) {
+    font-size: 8px;
+  }
+}
+
+.prev-champions {
+  border-radius: 6px;
+  overflow: hidden;
+
+  &-header {
+    padding: 28px 1rem;
+
+    background: linear-gradient(
+      90deg,
+      #dfe7ee -56%,
+      rgba(223, 231, 238, 0.18894) 32.51%,
+      rgba(223, 231, 238, 0.04) 48.76%,
+      rgba(223, 231, 238, 0.188462) 68.24%,
+      #dfe7ee 174.74%
+    );
+
+    h2 {
+      font-weight: 600;
+      font-size: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #12253d;
+
+      @media (max-width: 992px) {
+        font-size: 8px;
+      }
+    }
+  }
+
+  &-table {
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    @media (max-width: 992px) {
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+    }
+
+    thead tr td,
+    tbody tr td {
+      padding: 1rem 0;
+      
+      @media (max-width: 992px) {
+        padding: 6px 4px;
+      }
+    }
+
+    thead tr:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #697077;
+      border-bottom: 1px solid #dde1e6;
+
+      @media (max-width: 992px) {
+        font-size: 8px;
+      }
+
+      td:last-child {
+        text-align: end;
+      }
+    }
+
+    tbody tr {
+      td {
+        vertical-align: middle;
+
+        @media (max-width: 992px) {
+          font-size: 8px;
+        }
+      }
+
+      td:first-child {
+        color: #697077;
+        font-size: 14px;
+        padding-inline: 0;
+      }
+
+      td:last-child {
+        text-align: end;
+        div {
+          border-left: 1px solid #dde1e6;
+          & > * {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .prev-champions-table {
+  .winner .row:first-child {
+    a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #193050;
+      margin-left: 14px !important;
+      &:hover {
+        color: $secondary-text;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 8px;
+      }
+    }
+  }
+
+  .runner-up .row:first-child {
+    a {
+      font-size: 14px;
+      color: $secondary-text;
+      margin-left: 14px !important;
+      &:hover {
+        color : $primary-text;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 8px;
+      }
+    }
+  }
+}
+
+.view-more-link {
+  padding: 20px 1rem;
+  width: fit-content;
+  margin: 0 auto;
+
+  span {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #3a63f3;
+
+    @media (max-width: 992px) {
+      font-size: 8px;
+    }
+  }
+  img {
+    margin-left: 0.5rem;
+  }
+}
+
+.border-right {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -25px;
+    width: 1px;
+    height: 100%;
+    background-color: #DDE1E6;
+  }
+}

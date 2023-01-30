@@ -1,0 +1,134 @@
+@import "../../../../styles/colors";
+tbody {
+  border-top: none !important;
+}
+
+ th,td {
+   padding:14px 20px;
+  @media (max-width: 992px) {
+      padding: 7px 10px;
+  }
+ }
+
+:host .sticky-top {
+  top: 9%;
+}
+
+td p {
+  margin: 0
+}
+ 
+.skip-paragraph {
+  margin-bottom: 1.3rem !important;
+}
+
+thead > tr > th {
+  background: $primary;
+  color: $white;
+  font-size: 16px;
+  font-weight: 600;
+  @media (max-width: 992px) {
+      font-size: 8px;
+    }
+}
+
+.atp-player{
+  ::ng-deep .link{
+    color: $primary-text;
+  }
+}
+
+.tabel-border tbody > tr  {
+  background-color: $white;
+  position: relative;
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #DDE1E6;
+    margin: 0 5%;
+  }
+}
+
+table td {
+  font-size: 14px;
+  @media (max-width: 992px) {
+      font-size: 8px;
+    }
+}
+
+.number-text {
+  font-size:16px;
+  font-weight: 400;
+  color: $primary-text;
+  @media (max-width: 992px) {
+      font-size: 8px;
+    }
+}
+
+.event-title{
+  color:#F33C59;
+  font-size: 16px !important;
+}
+
+.image-wrapper {
+  vertical-align: middle;
+}
+
+.text-head{
+  font-weight:600;
+  color: $primary-text;
+  &:hover {
+      color: $secondary-text ;
+    }
+}
+
+.wins-description
+{
+  font-size: 14px;
+  color: $secondary-text;
+  @media (max-width: 992px) {
+      font-size: 8px;
+    }
+}
+
+.text-description {
+  font-size: 12px;
+  color: $secondary-text;
+}
+
+tr:last-child > td, tr:last-child > th {
+  border-bottom-width: 0;
+}
+
+.table-wrap {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.profile-link {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.profile-link:hover {
+  color: $secondary-text}
+
+.tournament-link {
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.tournament-link:hover {
+  color: $secondary-text;
+}
+
+.h2h-link {
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    color: $secondary-text !important;
+  }
+}

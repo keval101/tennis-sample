@@ -1,0 +1,143 @@
+@import '.././../../../styles/colors';
+
+.live-header {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    overflow: hidden;
+}
+
+.live-events {
+    padding: 0 2rem 2rem !important;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    @media (max-width: 992px) {
+            padding: 0 1rem 1rem !important;
+        }
+    
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $primary;
+    @media (max-width: 992px) {
+            font-size: 10px;
+        }
+}
+
+.event-date {
+    color: $secondary-text;
+}
+.event-prize,
+.event-date {
+    font-size: 14px;
+
+    @media (max-width: 992px) {
+        font-size: 8px;
+    }
+}
+
+.event-prize {
+    color: #3a63f3;
+}
+
+.event-link {
+    color: $primary-text;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    @media (max-width: 992px) {
+        font-size: 10px;
+        line-height: normal;
+    }
+
+    @media (max-width: 1200px) {
+        white-space: normal;
+    }
+
+    &:hover {
+        cursor: pointer;
+        color: $secondary-text;
+        transition: all 0.2s ease;
+    }
+}
+
+.event-row {
+    display: flex;
+    flex-wrap: inherit;
+}
+
+.row-container {
+    gap: 30px;
+}
+
+.event-court {
+    @media (max-width: 1200px) {
+        margin-right: 10px;
+    }
+
+    img {
+        height: 1.3rem;
+        transform: rotate(90deg);
+
+        @media (max-width: 992px) {
+            height: 1rem;
+            margin-right: 0;
+        }
+    }
+}
+
+::ng-deep .event-flag {
+    img {
+        width: 24px !important;
+        height: 18px !important;
+
+        @media (max-width:768px) {
+            padding-inline: 2px;
+        }
+
+        @media (max-width: 992px) {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
+        }
+    }
+}
+
+.event {
+    .row {
+        @media (min-width:768px) {
+        flex-wrap: nowrap !important;
+        }
+    }
+}
+
+.left-event {
+    border-right: 1.5px dashed $line-color;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: $blue;
+    font-weight: 600;
+    padding: 6px 18px;
+    border: 0px solid;
+
+    &:hover {
+        background: $hover-blue;
+        box-shadow: 0px 8px 15px rgba(78, 115, 244, 0.2);
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    @media (max-width:992px) {
+        font-weight: 400;
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}
+
+

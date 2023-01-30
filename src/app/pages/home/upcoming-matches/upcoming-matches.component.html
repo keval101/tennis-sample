@@ -1,0 +1,182 @@
+<div class="row mt-4  justify-content-center">
+  <div class="col h2h-header">
+    <div class="text-uppercase p-0 m-0">Upcoming Tennis Matches</div>
+  </div>
+</div>
+
+
+<div class="row bg-white upcoming-table-container text-nowrap overflow-x-auto" [class.view-border]="!viewbtn" *ngIf="groupByTournament?.length; else noMatchGroups">
+    <table class="table text-center m-0">
+        <thead>
+        <tr class="text-uppercase text-start header">
+            <td class="ps-2 ps-md-3 pe-0 py-2 py-md-3"><span class="py-1 ps-2 py-2">player 1</span></td>
+            <td class="px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-0">player 2</span></td>
+            <!-- <td class="text-center px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-2">odds/odds</span></td> -->
+            <td class="text-center px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-2">h2h</span></td>
+            <td class="text-center pe-2 pe-md-3 ps-0 py-2 py-md-3"><span class="py-1 py-md-2 px-0 empty-span"></span></td>
+        </tr>
+        </thead>
+
+        <tbody>
+            <ng-container *ngFor="let match of groupByTournament" >
+            <tr  class="align-middle " *ngIf="match?.group" style="border-bottom:0px solid transparent">
+            <td  colspan="5" class="p-0 border-header">
+                <div class="d-flex upcoming-table-header">
+                <div class="text-start text-uppercase d-flex justify-content-center py-2 draw-quartal col-1"><img class="icon" [src]="'assets/icons/' + match?.logo_path?.toLowerCase() + '.svg'"></div>
+                <div class="text-start text-uppercase ps-3 py-2 draw-quartal"><a class="m-0 tournament-link text-decoration-none fw-bold " (click)="navigateToTournament(match.group, match.date!, match.type)">
+                    {{match!.group}}
+                </a> <span class="type">{{match!.type}}</span></div>
+                </div>
+            </td>
+        </tr>
+         <tr  class="align-middle">
+           
+
+            <td class="text-start" *ngIf="match?.matchPlayed" [ngClass]="match.matchPlayed!.h2h.split('-')[0] >  match.matchPlayed!.h2h.split('-')[1] ? 'player-dark' : 'player-light'">
+                <app-sportsman
+                
+                        [fullname]="match.matchPlayed!.player1.name"
+                        [idkLeague]="match.matchPlayed!.player1.seed"
+                        [countryCode]="match.matchPlayed!.player1.countryAcr"
+                        [hideCountryBySize]="true"
+                        [padding]="false"
+                ></app-sportsman>
+            </td>
+            <td class="text-start" *ngIf="match?.matchPlayed" 
+                [ngClass]="+(match.matchPlayed!.h2h.split('-')[0]) <  +(match.matchPlayed!.h2h.split('-')[1]) ? 'player-dark' : 'player-light'">
+                    <app-sportsman
+                            [fullname]="match.matchPlayed!.player2.name"
+                            [idkLeague]="match.matchPlayed!.player2.seed"
+                            [countryCode]="match.matchPlayed!.player2.countryAcr"
+                            [hideCountryBySize]="true"
+                            [padding]="false"
+                    ></app-sportsman>
+            </td>
+
+            <!-- <td *ngIf="match?.matchPlayed" class="match-result text-center">
+                <div class="odds-scr"><span > {{match.matchPlayed!.player1.odd}}</span>
+                    <span>{{match.matchPlayed!.player2.odd}}</span></div>
+            </td> -->
+
+            <td
+                    class=" h2h-link"
+                    *ngIf="match?.matchPlayed"
+                    (click)="navigateToH2h(match?.matchPlayed.player1?.name, match?.matchPlayed.player2?.name, match.matchPlayed.type)"
+            >{{match.matchPlayed!.h2h
+            ? match.matchPlayed!.h2h.replace("-", "/"): "0/0"}} </td>
+            <td
+                    class="h2h-link text-end"
+                    *ngIf="match?.matchPlayed"
+            ><button (click)="navigateToH2h(match?.matchPlayed.player1?.name, match?.matchPlayed.player2?.name, match.matchPlayed.type)" class="prediction">Prediction</button></td>
+        </tr>
+        </ng-container>
+       
+        </tbody>
+    </table>
+</div>
+<div class="row bg-white viewmore-container" *ngIf="viewbtn &&!nextPageData && groupByTournament.length ">
+  <div class="col justify-content-center align-items-center d-flex  gap-1" (click)="nextPage()">
+    <a class="text-decoration-none text-blue text-uppercase" >View more </a>
+    <span><img src="assets/icons/arrow-down.svg"></span>
+  </div>
+</div>
+
+<ng-template #noMatchGroups>
+    <app-not-stat [title]="'Upcoming Tennis Matches'"></app-not-stat>
+    <!-- <h5>No information...</h5> -->
+</ng-template>
+  
+
+<div class="row mt-1 mt-md-3" *ngIf="!viewbtn">
+    <div class="col justify-content-center align-items-center d-flex flex-column all-matches">
+        <button class="btn btn-primary" (click)="allUpcoming()">View All Upcoming Tennis Matches</button>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="row mt-3 align-items-center">
+    <div class="col-12 col-md-4">
+        <h6 class="text-capitalize fw-bold p-0 m-0">Upcoming Tennis Matches</h6>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col p-1 p-md-2">
+        <div class="bg-white border-radius text-nowrap overflow-x-auto pb-1" *ngIf="groupByTournament?.length; else noMatchGroups">
+            <table class="table text-center">
+                <thead>
+                <tr class="text-uppercase text-start header">
+                    <td class="ps-2 ps-md-3 pe-0 py-2 py-md-3"><span class="py-1 ps-2 py-2">player 1</span></td>
+                    <td class="px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-0">player 2</span></td>
+                    <td class="text-center px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-2">odds/odds</span></td>
+                    <td class="text-center px-0 py-2 py-md-3"><span class="py-1 py-md-2 px-2">h2h</span></td>
+                    <td class="text-center pe-2 pe-md-3 ps-0 py-2 py-md-3"><span class="py-1 py-md-2 px-0 empty-span"></span></td>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngFor="let match of groupByTournament" class="align-middle">
+                    <td
+                            colspan="6"
+                            class="text-start text-uppercase ps-3 ps-md-4 draw-quartal"
+                            *ngIf="match?.group"
+                    >
+                        <img class="icon" [src]="'assets/icons/' + match?.logo_path?.toLowerCase() + '.svg'">
+                        <a class="m-0 tournament-link text-decoration-none fw-bold" (click)="navigateToTournament(match.group, match.date!, match.type)">
+                            {{match!.group}}
+                        </a> <span class="type">{{match!.type}}</span>
+                    </td>
+
+                    <td class="ps-3 ps-md-4 text-start" *ngIf="match?.matchPlayed">
+                        <app-sportsman
+                                [fullname]="match.matchPlayed!.player1.name"
+                                [idkLeague]="match.matchPlayed!.player1.seed"
+                                [countryCode]="match.matchPlayed!.player1.countryAcr"
+                                [hideCountryBySize]="true"
+                                [padding]="false"
+                        ></app-sportsman>
+                    </td>
+                    <td class="text-start" *ngIf="match?.matchPlayed">
+                            <app-sportsman
+                                    [fullname]="match.matchPlayed!.player2.name"
+                                    [idkLeague]="match.matchPlayed!.player2.seed"
+                                    [countryCode]="match.matchPlayed!.player2.countryAcr"
+                                    [hideCountryBySize]="true"
+                                    [padding]="false"
+                            ></app-sportsman>
+                    </td>
+
+                    <td *ngIf="match?.matchPlayed" class="match-result text-center">
+                        <div><span class="percent percent-orange"> {{match.matchPlayed!.player1.odd}}</span> - <span class="percent percent-green">{{match.matchPlayed!.player2.odd}}</span></div>
+                    </td>
+
+                    <td
+                            class="pe-md-4 pe-2 h2h-link"
+                            *ngIf="match?.matchPlayed"
+                            (click)="navigateToH2h(match?.matchPlayed.player1?.name, match?.matchPlayed.player2?.name, match.matchPlayed.type)"
+                    >H2H {{match.matchPlayed!.h2h}}</td>
+                    <td
+                            class="pe-md-4 pe-2 h2h-link"
+                            *ngIf="match?.matchPlayed"
+                    ><button (click)="navigateToH2h(match?.matchPlayed.player1?.name, match?.matchPlayed.player2?.name, match.matchPlayed.type)" class="prediction">Prediction</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <ng-template #noMatchGroups>
+            <h5>No information...</h5>
+        </ng-template>
+    </div>
+</div>
+
+<div class="row mt-1 mt-md-3">
+    <div class="col justify-content-center align-items-center d-flex flex-column all-matches">
+        <button class="btn btn-primary" (click)="allUpcoming()">View All Upcoming Tennis Matches</button>
+    </div>
+</div> -->

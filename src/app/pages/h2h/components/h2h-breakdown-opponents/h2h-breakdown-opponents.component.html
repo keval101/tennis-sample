@@ -1,0 +1,64 @@
+<div class="row align-items-center  bg-white d-flex justify-content-center">
+  <div class="col h2h-header">
+    <div class="text-uppercase p-0 m-0">
+      {{playerOneName}} VS {{playerTwoName}} MATCHES VS ALL OPPONENTS
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-end bg-white p-md-4 p-2 opponents-select">
+  <div
+    class="col-3 col-md-2 ps-0"
+    *ngIf="careerFilters.length > 1"
+  >
+    <app-selector
+      [defaultValue]="careerFilters[0].value"
+      [options]="careerFilters"
+      [formControl]="getFormControl('career')"
+      (formControlChange)="changeCareer($event)"
+    ></app-selector>
+    </div>
+    <div class="col-3 col-md-2">
+    <app-selector
+      [options]="roundFilters"
+      [formControl]="getFormControl('round')"
+      (formControlChange)="changeRound($event)"
+    ></app-selector></div>
+    <div class="col-3 col-md-2">
+      <app-selector
+      [options]="surfaceFilters"
+      [formControl]="getFormControl('court')"
+      (formControlChange)="changeCourt($event)"
+    ></app-selector></div>
+    <div class="col-3 col-md-2 pe-0">
+    <app-selector
+      [options]="tournamentFilters"
+      [formControl]="getFormControl('tournament')"
+      (formControlChange)="changeTournament($event)"
+    ></app-selector>
+  </div>
+</div>
+
+<div class="row">
+  <ng-container *ngIf="PlOneStat && PlTwoStat; else noStat">
+    <div class="col-12 p-0 breackdown-container">
+      <app-short-table
+      
+        [showHeader]="true"
+        [headers]="headers"
+        [blueHeader]="true"
+        [hasRightBorder]="true"
+        [tableData]="true"
+        [hasPadding]="true"
+        [data]="playerEventStats"
+      ></app-short-table>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noStat> 
+  <app-not-stat [title]="'Matches VS All Opponents'"></app-not-stat>
+  <!-- <td class="no-stat-text">
+    No Stat
+  </td> -->
+</ng-template>

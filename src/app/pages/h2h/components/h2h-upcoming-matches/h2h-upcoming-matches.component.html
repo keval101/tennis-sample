@@ -1,0 +1,70 @@
+<div class="row bg-white justify-content-center ">
+  <div class="col upcoming-header">
+    <div class="text-uppercase p-0 m-0">{{upcomingMatch.player1.name}} vs {{upcomingMatch.player2.name}} upcoming match</div>
+  </div>
+</div>
+
+<div class="row upcoming-data ">
+  <div class="bg-white upcoming-table table-scroll">
+    <table class="table text-center m-0">
+      <tbody>
+        <tr class="align-middle table-strip">
+          <!-- <td
+            class="text-start text-uppercase ps-3 pe-3 draw-quartal col-1"
+          >
+            <img [src]="'assets/icons/' + upcomingMatch.tournament.court.name + '.svg'" alt="" />
+            </td> -->
+            <td colspan="3" class="text-start text-uppercase ps-3 draw-quartal">
+            <a class="m-0 tournament-name text-decoration-none">
+              {{upcomingMatch.tournament.name}}
+            </a>
+          </td>
+        </tr>
+        <tr class="align-middle">
+          <!-- <td class="py-3 col-1 text-matches">
+            {{upcomingMatch.round.name}}
+          </td> -->
+          <td class="py-3 ps-3 text-start  text-matches text-nowrap">
+            <app-sportsman
+              [fullname]="upcomingMatch.player1.name"
+              class="tournament-name"
+              [countryCode]="upcomingMatch.player1.countryAcr"
+              [isShortName]="false"
+              [hideCountryBySize]="true"
+              [padding]="false"
+            ></app-sportsman>
+            </td>
+
+            <td class="py-3 text-matches d-flex gap-1 align-items-center">
+              
+              <img [src]="'assets/icons/' + upcomingMatch.tournament.court.name.toLowerCase() + '.svg'" alt="" width="24px" height="13px"/>
+              <div>{{upcomingMatch.tournament.court.name}}</div>
+            </td>
+
+            
+            
+            <td class="py-3 text-start  text-matches text-nowrap">
+              <app-sportsman
+                [fullname]="upcomingMatch.player2.name"
+                class="tournament-name"
+                [countryCode]="upcomingMatch.player2.countryAcr"
+                [hideCountryBySize]="true"
+                [padding]="false"
+              ></app-sportsman></td>
+              <!-- <td class="pe-0 py-3 score-container align-items-center">
+                <div class="blue-score">{{upcomingMatch.odd1 ?? 'N/A'}}</div>
+                <div class="blue-score">{{upcomingMatch.odd2 ?? 'N/A'}}</div>
+              </td> -->
+              <!-- <td class="col-1 ps-0 pe-0">
+                <div class="blue-score">{{upcomingMatch.odd2 ?? '-'}}</div>
+              
+              </td> -->
+      </tbody>
+    </table>
+
+  </div>
+  <!-- <app-h2h-predictions [playerOneName]="upcomingMatch.player1.name" [playerTwoName]="upcomingMatch.player2.name"></app-h2h-predictions> -->
+</div>
+
+
+

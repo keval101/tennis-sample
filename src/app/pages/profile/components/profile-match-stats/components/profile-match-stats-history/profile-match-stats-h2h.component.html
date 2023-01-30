@@ -1,0 +1,69 @@
+<div class="row">
+  
+    <div class="h2h-header text-uppercase">{{ name }} interesting Heads to Heads</div>
+  
+</div>
+
+<div class="bg-white h2h-container row">
+  <table class="table h2h-table m-0">
+    <tbody>
+      <tr *ngFor="let h2h of interestingH2hs">
+        <td>
+          <div class="profile">
+            <img [src]="getImageUrl(h2h.player1Image)" onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"  alt="" style="border-radius: 50%;"/>
+          </div>
+          <p>{{ name }}</p>
+        </td>
+        <td colspan="3" class="match-stats">
+          <div>{{getResult( h2h.h2h.split("-")[0], h2h.h2h.split("-")[1])}}</div>
+          <div class="progressbar mb-3">
+            <div class="score">
+              <strong>{{ h2h.h2h.split("-")[0] }}</strong>
+              <strong>{{ h2h.h2h.split("-")[1] }}</strong>
+            </div>
+            <div class="progressbar-container">
+              <div
+                class="progressbar-container-inner"
+                [ngStyle]="{
+                  width: countPercentage(
+                    h2h.h2h.split('-')[0],
+                    h2h.h2h.split('-')[1]
+                  ),
+                  'border-right':  countPercentage(
+                    h2h.h2h.split('-')[0],
+                    h2h.h2h.split('-')[1]
+                  ) == '0.00%' || countPercentage(
+                    h2h.h2h.split('-')[0],
+                    h2h.h2h.split('-')[1]
+                  ) =='100.00%' ? '0px solid transparent' : '4px solid #FFFF'
+                }"
+              ></div>
+            </div>
+          </div>
+          <div class="cursor-pointer" (click)="navigateToH2h( name , h2h.opponent)">VIEW H2H</div>
+        </td>
+        <td>
+          <div class="profile">
+            <img [src]="getImageUrl(h2h.player2Image)" onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'" style="border-radius: 50%;" alt="" />
+          </div>
+          <p>{{ h2h.opponent }}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- <div class="row bg-white viewmore-container" >
+  <div class="col justify-content-center align-items-center d-flex gap-1">
+    <a class="text-decoration-none text-blue text-uppercase">View more</a>
+    <span><img src="assets/icons/arrow-down.svg"></span>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+
+

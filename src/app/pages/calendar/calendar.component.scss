@@ -1,0 +1,72 @@
+
+@import "../../../styles/colors";
+.calender-header {
+  background-color: $primary;
+  color: $white;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  @media (max-width: 992px) {
+      font-size: 14px !important;
+      padding: 14px 0;
+  }
+}
+
+.search-container
+{
+  margin: 20px 0;
+}
+
+.search-box {
+  width: 55%;
+  @media (max-width: 1200px)  {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+::ng-deep .calender .tab-container {
+    gap: 0 !important;
+}
+
+::ng-deep .calender .tab {
+  background: $light-gray !important;
+  &:first-child {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+  }
+
+  &.active-tab {
+    background: #193050 !important
+  }
+
+  &:last-child {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+  }
+}
+
+::ng-deep .date-selector select {
+  width: auto !important;
+  font-size: 14px !important;
+}
+
+::ng-deep .surface-selector select {
+  width: 9.5rem !important;
+  font-size: 14px !important;
+}
+::ng-deep .level-selector select {
+  width: 7rem !important;
+  font-size: 14px !important;
+}
+
+.filter-selector {
+  flex-grow :0;
+  @media (min-width: 1400px) {
+    display: flex;
+    justify-content: end;
+    flex-grow: 1;
+  }
+}

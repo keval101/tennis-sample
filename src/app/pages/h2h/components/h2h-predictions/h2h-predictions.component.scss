@@ -1,0 +1,63 @@
+
+@import '../../../../../styles/colors';
+
+.prediction-header
+{
+  font-size: 20px;
+  font-weight: 600;
+  color:$primary-text;
+
+  @media (max-width: 992px) {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 992px) {
+  h5 {
+    font-size: 12px !important;
+  }
+  ::ng-deep span {
+    font-size: 8px !important;
+  }
+  .btn {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+}
+
+.prediction-table
+{
+  padding-right:22px;
+  border-right:1px dashed $line-color;
+}
+
+.stat-table{
+  padding-left: 22px;
+}
+
+::ng-deep .prediction-container{
+  padding:22px 32px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+  @media (max-width: 992px) {
+    padding: 14px;
+  }
+  
+  app-short-table {
+    div:first-child {
+      padding: 0 !important;
+    }
+    tbody tr td:last-child{
+       color: $blue;
+       font-size: 14px;
+       font-weight: 600;
+       text-align: end !important;
+    }
+    tbody tr {
+      border-bottom: 1px solid $line-color;
+    }
+    
+  }
+}
+

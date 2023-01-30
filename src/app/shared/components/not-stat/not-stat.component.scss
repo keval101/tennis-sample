@@ -1,0 +1,21 @@
+@import "../../../../styles/colors";
+@import "../../../../styles/mixins.scss";
+
+.no-data-header {
+  background-color: $white;
+  text-align: center;
+  text-transform: capitalize;
+  justify-content: center;
+    padding: 12px 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+  &.add-padding {
+    padding: 1rem 0;
+  }
+  @include font-params(16px, #697077, 600, normal);
+
+  @media (max-width:992px) {
+    font-size: 12px;
+  }
+}

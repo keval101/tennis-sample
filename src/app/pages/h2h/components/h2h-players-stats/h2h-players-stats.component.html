@@ -1,0 +1,43 @@
+<div class="row bg-white h2h-player-stat-table justify-content-center ">
+  <div class="col h2h-header">
+    <div class="text-uppercase p-0 m-0">{{playerOneName}} vs {{playerTwoName}} HEAD TO HEAD MATCHES STATS</div>
+  </div>
+</div>
+
+<div class="row justify-content-end bg-white p-md-4 p-2 players-select">
+  <div class="col-3 col-md-2 ps-0" *ngIf="filtersFormGroup.controls?.level">
+    <app-selector [options]="levelFilters" [formControl]="getFormControl('level')" ></app-selector>
+  </div>
+  <div class="col-3 col-md-2">
+    <app-selector [options]="surfaceFilters" [formControl]="getFormControl('court')" ></app-selector>
+  </div>
+  <div class="col-3 col-md-2">
+    <app-selector [options]="roundFilters" [formControl]="getFormControl('round')" ></app-selector>
+  </div>
+  <div class="col-3 col-md-2 pe-0">
+    <app-selector [options]="tournamentFilters" [formControl]="getFormControl('tournament')" ></app-selector>
+  </div>
+</div>
+
+<div class="row">
+  <ng-container *ngIf="h2hStats && !errorMessage; else noStat">
+    <div class="col-12 p-0 player-stat">
+      <app-short-table
+        [showHeader]="true"
+        [headers]="headers"
+        [blueHeader]="true"
+        [hasRightBorder]="true"
+        [tableData]="true"
+        [hasPadding]="true"
+        [data]="playerEventStats"
+      ></app-short-table>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noStat>
+  <app-not-stat [title]="'Head To Head Matches Stats'"></app-not-stat>
+    <!-- <td class="no-stat-text">
+      No Stat
+    </td> -->
+</ng-template>

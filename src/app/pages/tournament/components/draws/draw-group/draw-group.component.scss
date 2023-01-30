@@ -1,0 +1,148 @@
+@import '../../../../../../styles/colors';
+
+@media (max-width: 992px) {
+  .container,
+  span {
+    font-size: 8px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+}
+
+.text-matches {
+  color: $secondary-text;
+}
+
+.draws-header {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -11%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    @media (max-width:992px) {
+      top: -18%;
+    }
+    @media (max-width:600px) {
+      top: -16%;
+    }
+  }
+}
+
+.h2h-link {
+  transition: 0.2s;
+  cursor: pointer;
+  font-size: 14px;
+  &:hover {
+    color: #777 !important;
+  }
+  @media (max-width: 992px) {
+    font-size: 8px;
+  }
+}
+
+.border-transparent {
+  border-color: red !important;
+}
+
+.draw-table {
+  thead tr td {
+    color: #697077;
+    font-size: 12px;
+
+    @media (max-width: 992px) {
+      font-size: 8px;
+    }
+  }
+
+  tbody tr td {
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    @media (max-width: 992px) {
+      padding: 6px 14px !important;
+    }
+  }
+
+  .draw-table-header {
+    background: #e5ebf1;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #697077;
+    border: none;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+
+    @media (max-width: 992px) {
+      padding-top: 4px !important;
+      padding-bottom: 4px !important;
+    }
+  }
+
+  .match-scores {
+    border-left: 1px solid #dde1e6;
+  }
+
+  .text-matches {
+    font-size: 14px;
+
+    @media (max-width: 992px) {
+      font-size: 8px;
+    }
+  }
+
+  .odds-scr span {
+    color: #fff;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: #3a63f3;
+    border-radius: 6px;
+    font-size: 14px;
+    @media (max-width: 992px) {
+        font-size: 8px;
+        border-radius: 4px;
+      }
+  }
+
+  .odds-scr {
+    :first-child {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+::ng-deep .draw-table {
+  app-sportsman:is(.winner) .row {
+    :first-child {
+      :nth-child(2) {
+        margin-left: 0.5rem;
+        font-size: 14px;
+        font-weight: 600;
+        color: #12253d;
+
+        @media (max-width: 992px) {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+
+  app-sportsman:is(.runnerup) .row {
+    :first-child {
+      :nth-child(2) {
+        margin-left: 0.5rem;
+        font-size: 14px;
+        color: #697077;
+
+        @media (max-width: 992px) {
+          font-size: 8px;
+        }
+      }
+    }
+  }
+}

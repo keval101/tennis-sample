@@ -1,0 +1,199 @@
+@import '../../../../../styles/colors';
+@media (max-width: 768px) {
+  .calender {
+    overflow-x: scroll;
+  }
+  .table-scroll {
+    max-width: 768px;
+    overflow-x: scroll;
+  }
+}
+
+.calender {
+  padding: 1.5rem 2rem;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  @media (max-width: 992px) {
+      padding: 1rem;
+    }
+}
+
+.calender-table {
+  width: 100%;
+}
+
+app-match-stat {
+  ::ng-deep .no-stat-text {
+    display: none;
+  }
+}
+
+.calender-header {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #697077;
+
+      @media (max-width: 992px) {
+          font-size: 8px !important;
+        }
+
+  td {
+    padding-inline: 14px;
+  }
+}
+
+.calender-body {
+  max-width: 700px;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.calender-topbar {
+  background: #e5ebf1;
+
+  td {
+    padding: 7px 14px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #697077;
+    border-bottom-width: 0;
+
+        @media (max-width: 992px) {
+            font-size: 8px !important;
+          }
+  }
+
+  td:first-child {
+    font-weight: 600;
+    text-transform: uppercase;
+
+    sup {
+      font-size: 0.5rem;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
+}
+
+.calender-data {
+  position: relative;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #dde1e6;
+  }
+
+  td {
+    border: none;
+  }
+
+  .tournament-type,
+  .tournament-court {
+    min-width: 40px;
+  }
+
+  .tournament-type {
+    padding-right: 10px;
+    padding-left: 14px;
+
+  }
+
+  .tournament-court {
+    padding-left: 7px;
+
+            @media (max-width: 992px) {
+                padding-left: 12px;
+              }
+  }
+
+  .tournament-type {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: #697077;
+    vertical-align: middle;
+    position: relative;
+
+        @media (max-width: 992px) {
+            font-size: 8px !important;
+          }
+  }
+
+  .tournament-type::after {
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 50%;
+    background-color: #dde1e6;
+  }
+
+  .tournament-court {
+    vertical-align: middle;
+
+    img {
+      transform: rotate(90deg);
+    }
+  }
+
+  .tournament-details {
+    font-size: 14px;
+    vertical-align: middle;
+
+        @media (max-width: 992px) {
+            font-size: 8px !important;
+          }
+
+    .country-flag {
+      margin-right: 1rem;
+    }
+    .tournament-name {
+      display: block;
+      padding-top: 1rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      color: #12253d;
+      &:hover {
+        color: $secondary-text !important;
+      }
+      @media (max-width: 992px) {
+          padding-top: 12px !important;
+        }
+    }
+    .tournament-date {
+      color: #697077;
+      padding-right: 12px;
+      border-right: 1px solid #dde1e6;
+
+            @media (max-width: 992px) {
+                margin-bottom: 12px !important;
+              }
+
+    }
+    .tournament-price {
+      padding-left: 12px;
+      color: #3a63f3;
+    }
+  }
+
+  .tournament-winner {
+    color: #12253d;
+    font-weight: 600;
+    font-size: 14px;
+    vertical-align: middle;
+
+        @media (max-width: 992px) {
+            font-size: 8px !important;
+          }
+  }
+
+  .tournament-stats {
+    text-align: end;
+    padding-right: 14px;
+  }
+}

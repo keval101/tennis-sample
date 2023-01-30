@@ -1,0 +1,55 @@
+@import "../../../../../styles/colors";
+
+@media (max-width: 992px) {
+  .container, span {
+    font-size: 8px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+}
+
+.draw-header {
+  background: linear-gradient(90deg, #DFE7EE -56%, rgba(223, 231, 238, 0.18894) 32.51%, rgba(223, 231, 238, 0.04) 48.76%, rgba(223, 231, 238, 0.188462) 68.24%, #DFE7EE 174.74%);
+  color: #12253D;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  margin-bottom: 0 !important;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+    padding: 14px 0;
+  }
+}
+
+.draw-table-container {
+  padding: 0 32px;
+
+  @media (max-width: 992px) { 
+    padding: 0 16px;
+  }
+}
+
+::ng-deep .draw-header .selected-year {
+  color: #697077;
+}
+
+::ng-deep .tournament-tabs {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0 24px 0;
+  .tab {
+    flex-grow: initial !important;
+    background-color: #F5F7F9 !important;
+
+    &.active-tab {
+      background: #193050 !important
+    }
+  }
+
+}
+

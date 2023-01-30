@@ -1,0 +1,9 @@
+<img
+  [src]="'assets/icons/flags/' + countryCode + '.svg'"
+  [style]="{width, height}"
+  class="col-4"
+  [class.small-size-flag]="needSmallSizeFlag"
+  [class.d-none]="hideCountryBySize"
+  [class.d-sm-inline-block]="hideCountryBySize"
+  *ngIf="countryCode != 'N/A'"
+/>

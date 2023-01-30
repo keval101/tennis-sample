@@ -1,0 +1,103 @@
+
+
+<div
+  class="row prev-champions bg-white margin-container mx-0 p-0"
+  *ngIf="selectedChampions.length"
+>
+  <div class="col-12 px-0">
+    <h1 class="text-uppercase champions-header fw-bold p-0">Past champions</h1>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <app-tab
+        class="champions-tabs bg-white"
+        [actives]="actives"
+        (activeChanged)="changeActive($event)"
+      ></app-tab>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table prev-champions-table text-nowrap">
+      <thead>
+        <tr>
+          <td>year</td>
+          <td>champion</td>
+          <td></td>
+          <td class="text-center">runner-up</td>
+          <td>score</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let champion of selectedChampions.slice(0, maxShow)">
+          <td>
+            <span class="border-right">{{ champion.date.getFullYear() }}</span>
+          </td>
+          <td>
+            <app-sportsman
+              class="winner"
+              [hideCountryBySize]="true"
+              [fullname]="champion.player1.name"
+              [countryCode]="champion.player1.countryAcr"
+            ></app-sportsman>
+          </td>
+          <td
+            *ngIf="
+              champion.player1.stats && champion.player2.stats;
+              else noStat
+            "
+          >
+            <app-match-stat
+              [winner]="champion.player1"
+              [looser]="champion.player2"
+            ></app-match-stat>
+          </td>
+          <td class="ps-md-4">
+            <app-sportsman
+              class="runner-up"
+              [hideCountryBySize]="true"
+              [fullname]="champion.player2.name"
+              [countryCode]="champion.player2.countryAcr"
+            ></app-sportsman>
+          </td>
+          <td>
+            <div class="d-flex justify-content-end gap-3">
+              <ng-container
+                *ngFor="let score of getCustomResult(champion!.result)"
+              >
+                <div class="d-flex flex-column text-matches">
+                  <div [class.text-score]="score[0] > score[1]" class="mb-1">
+                    {{ score[0] }}
+                  </div>
+                  <div [class.text-score]="score[1] > score[0]">
+                    {{ score[1] }}
+                  </div>
+                </div>
+              </ng-container>
+              <span *ngIf="champion.result === 'w/o'" class="no-stat-text"
+                >w/o</span
+              >
+            </div>
+          </td>
+
+          <ng-template #noStat>
+            <td class="no-stat-text">No Stat</td>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div
+    class="bg-white px-0 viewmore-container"
+    *ngIf="maxShow <= selectedChampions.length"
+  >
+    <div
+      class="col justify-content-center align-items-center d-flex gap-1"
+    >
+      <a class="text-decoration-none text-blue text-uppercase" (click)="viewMore()">View more</a>
+      <span><img src="assets/icons/arrow-down.svg"/></span>
+    </div>
+  </div>
+</div>

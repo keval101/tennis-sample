@@ -1,0 +1,17 @@
+<div *ngIf="formControl">
+  <select
+    [(ngModel)]="selectedVal"
+    [formControl]="formControl"
+    (ngModelChange)="change()"
+    ngDefaultControl
+    class="p-1 cursor-pointer text-uppercase"
+  >
+    <option
+      *ngFor="let option of options"
+      class="cursor-pointer"
+      [value]="option.value"
+    >
+      {{ option.name }}
+    </option>
+  </select>
+</div>

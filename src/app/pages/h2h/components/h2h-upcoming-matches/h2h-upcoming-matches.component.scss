@@ -1,0 +1,136 @@
+@import '../../../../../styles/colors';
+
+@media (max-width: 991px) {
+  .table-scroll {
+    overflow-x: scroll;
+  }
+}
+
+.upcoming-header {
+  background-color: $primary;
+  color: $white;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+    padding: 14px 0;
+  }
+}
+
+.upcoming-data{
+  background-color: $dark-gray;
+  padding:10px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.upcoming-table{
+  padding:32px 32px 16px;
+  border-radius: 6px;
+
+  @media (max-width: 992px) {
+    padding: 16px 16px 0;
+  }
+}
+
+.table-strip {
+  background-color: $gray;
+  border-bottom: 0px solid transparent !important;
+  border-top: none !important;
+
+  &>:first-child {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-right: 2px solid $white;
+
+    @media (max-width: 992px) {
+      padding: 4px 10px !important;
+    }
+  }
+
+  &>:last-child {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+    @media (max-width: 992px) {
+      padding: 4px 10px !important;
+    }
+  }
+}
+
+.tournament-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: $secondary-text;
+  // &:hover {
+  //     color: $primary-text;
+  //   }
+
+  @media (max-width: 992px) {
+    font-size: 10px;
+  }
+  ::ng-deep a {
+    color: $primary-text ;
+    &:hover {
+        color: $secondary-text;
+      }
+  }
+}
+
+.text-matches {
+  font-size: 14px;
+  font-weight: 400;
+  color: $secondary-text;
+  span{
+    font-size: 12px;
+  }
+  @media (max-width: 992px) { 
+    font-size: 10px;
+  }
+  // ::ng-deep a {
+  //   color: $secondary-text;
+  //   &:hover {
+  //     color: $primary-text;
+  //   }
+  // }
+}
+
+@media (max-width: 992px) {
+  .container, span, td {
+    font-size: 8px;
+  }
+  h5 {
+    font-size: 12px;
+  }
+}
+
+.score-container {
+  display: flex;
+  justify-content: space-between;
+  gap:10px;
+  width: fit-content;
+  margin-left: auto;
+  @media (max-width: 992px) {
+      gap: 5px;
+    }
+}
+
+.blue-score {
+  background-color: $blue;
+  color: $white;
+  padding: 3px 12px;
+  border-radius: 6px;
+  width: fit-content;
+  // margin-left: auto;
+  font-size: 14px;
+  font-weight: 600;
+  @media (max-width: 992px) {
+      font-size: 10px;
+      padding: 3px 8px;
+    }
+}

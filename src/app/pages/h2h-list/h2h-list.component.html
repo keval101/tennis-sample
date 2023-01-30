@@ -1,0 +1,63 @@
+<div class="container mb-4">
+  <div class="row p-2">
+    <div class="col">
+      <div class="row mt-4">
+        <div class="col px-0">
+          <app-h2h-search-tennis-atp
+            [title]="'Tennis ATP H2H Search'"
+          ></app-h2h-search-tennis-atp>
+        </div>
+      </div>
+      <div class="row margin-container">
+        <div class="col px-0">
+          <app-h2h-search-tennis-atp
+            [title]="'Tennis WTA H2H Search'"
+            [type]="'wta'"
+          ></app-h2h-search-tennis-atp>
+        </div>
+      </div>
+
+      <app-interesting-h2h></app-interesting-h2h>
+
+      
+      <div class="row margin-container justify-content-center">
+        <div class="col h2h-header">
+          <div class="text-uppercase p-0 m-0">
+            Featured Detailed Tennis Head To Head
+          </div>
+        </div>
+      </div>
+      <div class="row p-0" *ngIf="profiles$ | async as profiles">
+        <app-h2h-information
+          [playerOne]="profiles.player1"
+          [playerTwo]="profiles.player2"
+          [surfaceData]="profiles.surfaceData"
+          [statistics1]="statistics1"
+          [statistics2]="statistics2"
+        >
+        </app-h2h-information>
+      </div>
+      <div class="row p-0" *ngIf="profiles$ | async as profiles">
+        <app-h2h-information-table
+          [playerOne]="profiles.player1"
+          [surfaceData]="profiles.surfaceData"
+          [playerTwo]="profiles.player2"
+          [careerData]="careerData"
+        ></app-h2h-information-table>
+      </div>
+      <app-not-stat *ngIf="!profiles$" [title]="'Featured Detailed Tennis Head To Head'"></app-not-stat>
+      <div class="row mt-1 mt-md-3" *ngIf="profiles$ | async as profiles">
+        <div
+          class="col justify-content-center align-items-center d-flex flex-column all-matches"
+        >
+          <button class="btn btn-primary" (click)="navigateToH2h()">
+            View Match Prediction
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container">
+      <app-sidebar [showAtpRanking]="false"></app-sidebar>
+    </div>
+  </div>
+</div>

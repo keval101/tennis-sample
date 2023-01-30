@@ -1,0 +1,75 @@
+<div class="row" *ngFor="let item of upcomingMatches">
+  <div class="upcoming-header text-uppercase">{{ item.player1.name ?? '' }} Upcoming Matches</div>
+  <div class="upcoming-description">
+    <div class="upcoming-head">
+      <div class="match-info justify-content-end" >
+        <img class="team-logo cursor-pointer" (click)="navigateToProfile(item.player1.name)" [src]="getImageUrl(item.player1.image)" alt=""
+        onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'" />
+        <div class="match-team cursor-pointer" (click)="navigateToProfile(item.player1.name)">{{ item.player1.name }}</div>
+        <!-- <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div> -->
+        <!-- <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div> -->
+      </div>
+      <div class="match-info">
+        <div class="d-flex align-items-center gap-2 text-center">
+            <!-- <img src="/assets/icons/flags/GRE.svg" width="16em"/> -->
+            <div class="match-name cursor-pointer" (click)="navigateToTournament(item.tournament.name,item.tournament.date)">{{item.tournament.name}}</div>
+        </div>
+        <div class="match-time">
+            <div class="text-day">{{getDateText(item.tournament.date)}}</div>
+            <div class="mt-2">{{item.tournament.date | date : "dd MMM, hh:mm"}}</div>
+            <!-- <div class="d-flex gap-2">
+                <div class="match-point">{{item.player1.odd ?? 'N/A'}}</div>
+                <div class="match-point">{{item.player2.odd ?? 'N/A'}}</div>
+            </div> -->
+        </div>
+      </div>
+      <div class="match-info justify-content-end">
+        <img class="team-logo cursor-pointer" (click)="navigateToProfile(item.player2.name)" [src]="getImageUrl(item.player2.image)" alt=""
+        onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'" />
+        <div class="match-team cursor-pointer" (click)="navigateToProfile(item.player2.name)">{{ item.player2.name }}</div>
+        <!-- <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div>
+        <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div> -->
+      </div>
+    </div>
+    <div class="d-flex justify-content-center gap-2">
+        <div class="text-uppercase text-view cursor-pointer" (click)="navigateToH2h(item.player1.name, item.player2.name)">view predictions</div>
+        <img src="/assets/icons/arrow-down.svg" alt="" width="12px" style="transform: rotate(-90deg);"/>
+    </div>
+  </div>
+</div>

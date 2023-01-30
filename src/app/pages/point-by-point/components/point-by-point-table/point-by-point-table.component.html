@@ -1,0 +1,189 @@
+<div class="row mt-4 bg-white d-flex justify-content-center">
+  
+    <div class="h2h-header text-uppercase">Tennis Point by Point Analysis</div>
+    <div class="col-md-8 p-4">
+          <app-tab
+            class="points"
+            [actives]="activeTypes"
+            (activeChanged)="changeActiveType($event)"
+          ></app-tab>
+    </div>
+</div>
+
+<div class="row my-4 align-items-center">
+    <div class="col-8 row groups-container">
+      <app-tab
+        class="point-groups"
+        [actives]="activeGroups"
+        (activeChanged)="changeActiveGroup($event)"
+      ></app-tab>
+    </div>
+</div>
+
+<div class="row justify-content-end bg-white p-md-3 p-2 select-container">
+  <div
+    class="col col-md-3 d-flex flex-grow-0 justify-content-md-end p-0 w-auto"
+  >
+    <select
+      class="p-1 text-uppercase"
+      [(ngModel)]="selectedYear"
+      (ngModelChange)="change()"
+    >
+      <option *ngFor="let option of yearFilters" [value]="option.value">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="col col-md-3 d-flex flex-grow-0 justify-content-md-end p-0 w-auto"
+    *ngIf="selectedGroupType === 'singles'"
+  >
+    <select
+      class="p-1 text-uppercase"
+      [(ngModel)]="selectedRanking"
+      (ngModelChange)="change()"
+    >
+      <option *ngFor="let option of rankingFilters" [value]="option.value">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="col col-md-3 d-flex flex-grow-0 justify-content-md-end p-0 w-auto"
+  >
+    <select
+      class="p-1 text-uppercase level-select"
+      [(ngModel)]="selectedLevel"
+      (ngModelChange)="change()"
+    >
+      <option *ngFor="let option of levelFilters" [value]="option.value">
+        {{ option.name }}
+      </option>
+    </select>
+  </div>
+  <div
+    class="col col-md-3 d-flex flex-grow-0 justify-content-md-end p-0 w-auto"
+  >
+    <select
+      class="p-1 text-uppercase"
+      [(ngModel)]="selectedSurface"
+      (ngModelChange)="change()"
+    >
+      <option *ngFor="let option of surfaceFilters" [value]="option.value">
+        {{ option.name }}
+      </option>
+    </select>
+    <!-- <app-selector [options]="surfaceFilters" [formControl]="getFormControl('surface')"></app-selector> -->
+  </div>
+</div>
+
+<div class="row">
+  <!-- *ngIf="pointByPointData && PlTwoStat; else noStat" -->
+  <div
+    class="col table-scroll bg-white point-container table-scroll"
+    *ngIf="pointByPointData.length; else noStat"
+  >
+    <table class="table text-center table-borderless table-stripe m-0">
+      <thead class="header-data">
+        <tr class="text-uppercase align-middle">
+          <td class="text-center col-1">
+            <p class="py-1 py-md-2 px-0 m-0">№</p>
+          </td>
+          <td class="text-start col-md-2">
+            <p class="py-1 py-md-2 col-3 m-0">player</p>
+          </td>
+          <td class="text-start">
+            <p class="d-flex mb-0 py-1 cursor-pointer py-md-2 gap-1 gap-lg-0 m-0" (click)="sortTable('case1')">
+              held from 0/40
+              <img
+                *ngIf="caseType === 'case1'"
+                src="../../../../../assets/icons/arrowdown_gray.svg"
+                alt=""
+                width="10px"
+                class="cursor-pointer ms-1"
+                [class.arrow-up]="isCaseOneShort"
+              />
+            </p>
+          </td>
+          <td class="text-start">
+            <p class="d-flex mb-0 py-1 cursor-pointer py-md-2 m-0 gap-1 gap-lg-0" (click)="sortTable('case2')">
+              held from 0/15
+              <img
+                *ngIf="caseType === 'case2'"
+                src="../../../../../assets/icons/arrowdown_gray.svg"
+                alt=""
+                width="10px"
+                class="cursor-pointer ms-1"
+                [class.arrow-up]="isCaseTwoShort"
+              />
+            </p>
+          </td>
+          <td class="text-start">
+            <p class="d-flex mb-0 py-1 cursor-pointer py-md-2 m-0 gap-1 gap-lg-0" (click)="sortTable('case3')">
+              IMMEDIATE BREAK BACK<img
+                *ngIf="caseType === 'case3'"
+                src="../../../../../assets/icons/arrowdown_gray.svg"
+                alt=""
+                width="10px"
+                class="cursor-pointer ms-1"
+                [class.arrow-up]="isCaseThreeShort"
+              />
+            </p>
+          </td>
+          <td class="text-start">
+            <p class="d-flex mb-0 py-1 cursor-pointer py-md-2 m-0 gap-1 gap-lg-0" (click)="sortTable('case4')">
+              SERVE DOMINANCE<img
+                *ngIf="caseType === 'case4'"
+                src="../../../../../assets/icons/arrowdown_gray.svg"
+                alt=""
+                width="10px"
+                class="cursor-pointer ms-1"
+                [class.arrow-up]="isCaseFourShort"
+              />
+            </p>
+          </td>
+        </tr>
+      </thead>
+
+      <tbody class="body-data">
+        <tr
+          class="align-middle"
+          *ngFor="let item of pointByPointData; let i = index"
+        >
+          <td class="text-center col-1">{{ i + 1 }}</td>
+          <td class="text-start col-3">{{ item.player_name }}</td>
+          <td class="text-start">
+            {{ calculatePercentage(item?.total_case1_won, item?.total_case1) }}%
+            ({{ item?.total_case1_won }}/{{ item?.total_case1 }})
+          </td>
+          <td class="text-start">
+            {{ calculatePercentage(item?.total_case2_won, item?.total_case2) }}%
+            ({{ item?.total_case2_won }}/{{ item?.total_case2 }})
+          </td>
+          <td class="text-start">
+            {{ calculatePercentage(item?.total_case3_won, item?.total_case3) }}%
+            ({{ item?.total_case3_won }}/{{ item?.total_case3 }})
+          </td>
+          <td class="text-start">
+            {{ calculatePercentage(item?.total_case4_won, item?.total_case4) }}%
+            ({{ item?.total_case4_won }}/{{ item?.total_case4 }})
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row bg-white viewmore-container" *ngIf="getCurrentDataLength > 0">
+  <div class="col justify-content-center align-items-center d-flex  gap-1">
+    <a class="text-decoration-none text-blue text-uppercase" (click)="nextPage()">View more </a>
+    <span><img src="assets/icons/arrow-down.svg" ></span>
+  </div>
+</div>
+
+
+
+<ng-template #noStat>     
+  <app-not-stat [title]="'Tennis Point by Point Analysis'"></app-not-stat>
+ </ng-template>
+

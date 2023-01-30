@@ -1,0 +1,195 @@
+<div class="section-header upcoming-matches d-flex justify-content-center align-items-center">
+  <div class="text-uppercase">Upcoming Football Matches</div>
+  <select
+    #selectedDay
+    (change)="selectDate(selectedDay.value)"
+    class="select select-league"
+  >
+    <option selected="true" disabled>Date</option>
+    <option *ngFor="let option of days" [value]="option">
+      {{ option }}
+    </option>
+  </select>
+</div>
+<div class="section-body">
+  <div class="btn-container">
+    <button
+      type="button"
+      class="custom-btn btn-default btn-btts pointer"
+      [class.btn-active]="selected === selectedDays.ONE"
+      (click)="activateClass(date, selectedDays.ONE)"
+    >
+      Today
+    </button>
+    <button
+      type="button"
+      class="custom-btn btn-default pointer"
+      [class.btn-active]="selected === selectedDays.TWO"
+      (click)="activateClass(tomorrow, selectedDays.TWO)"
+    >
+      Tomorrow
+    </button>
+    <button
+      type="button"
+      class="custom-btn btn-default pointer"
+      [class.btn-active]="selected === selectedDays.THREE"
+      (click)="activateClass(firstDay, selectedDays.THREE)"
+    >
+      {{
+        firstDay.toLocaleDateString('en-us', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        })
+      }}
+    </button>
+    <button
+      type="button"
+      class="custom-btn btn-default pointer"
+      [class.btn-active]="selected === selectedDays.FOUR"
+      (click)="activateClass(secondDay, selectedDays.FOUR)"
+    >
+      {{
+        secondDay.toLocaleDateString('en-us', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        })
+      }}
+    </button>
+    <button
+      type="button"
+      class="custom-btn btn-default pointer"
+      [class.btn-active]="selected === selectedDays.FIVE"
+      (click)="activateClass(thirthDay, selectedDays.FIVE)"
+    >
+      {{
+        thirthDay.toLocaleDateString('en-us', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        })
+      }}
+    </button>
+    <button
+      type="button"
+      class="custom-btn btn-default pointer"
+      [class.btn-active]="selected === selectedDays.SIX"
+      (click)="activateClass(fourthDay, selectedDays.SIX)"
+    >
+      {{
+        fourthDay.toLocaleDateString('en-us', {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        })
+      }}
+    </button>
+  </div>
+  <div class="table-grid" *ngIf="groupByLeagues">
+    <div class="grid-item grid-header">
+      <div class="text-center">HOME TEAM</div>
+      <div class="text-center">AWAY TEAM</div>
+      <!-- <div class="text-center">ODDS/ODDS</div> -->
+      <!-- <div class="text-center">H2H</div> -->
+      <div></div>
+    </div>
+
+    <div *ngFor="let match of groupByLeagues" [class.matches-data]="match?.matchPlayed">
+      <div
+        class="text-start text-uppercase group matches-header"
+        *ngIf="match?.group"
+      >
+        <div class="group_img"><img [src]="match.logo_path" class="icon" /></div>
+        <div class="group_link flex-grow-1"><a
+          class="m-0 league-link text-decoration-none fw-bold"
+          (click)="navigateToLeague(match!.group)"
+        >
+          {{ match!.group }}
+        </a></div>
+      </div>
+      
+      <div class="grid-item pointer" *ngIf="match?.matchPlayed">
+        <app-away-team
+          (click)="navigateToTeamPage(match.matchPlayed.firstTeam.name)"
+          [awayEmblem]="match.matchPlayed.firstTeam.logo_path"
+          [away]="match.matchPlayed.firstTeam.name"
+          [needSmallIcon]="true"
+          style="padding-left: 4px;"
+        ></app-away-team>
+
+        <app-away-team
+          (click)="navigateToTeamPage(match.matchPlayed.secondTeam.name)"
+          [needSmallIcon]="true"
+          [awayEmblem]="match.matchPlayed.secondTeam.logo_path"
+          [away]="match.matchPlayed.secondTeam.name"
+        ></app-away-team>
+
+        <!-- <div class="text-center d-flex justify-content-center gap-1">
+          <div
+            *ngIf="match.matchPlayed.odds.oddFirstTeam"
+            class="percent percent-orange"
+          >
+            {{ match.matchPlayed.odds.oddFirstTeam }}
+          </div>
+          <span
+          style="padding: 0 2px;"
+            *ngIf="
+              match.matchPlayed.odds.oddFirstTeam &&
+              match.matchPlayed.odds.oddSecondTeam
+            "
+            ></span
+          >
+          <div
+            *ngIf="match.matchPlayed.odds.oddSecondTeam"
+            class="percent percent-green"
+          >
+            {{ match.matchPlayed.odds.oddSecondTeam }}
+          </div>
+        </div> -->
+        <!-- <div
+          (click)="
+            navigateToH2h(
+              match.matchPlayed.firstTeam.id,
+              match.matchPlayed.secondTeam.id,
+              match.matchPlayed.firstTeam.name,
+              match.matchPlayed.secondTeam.name
+            )
+          "
+          class="text-center h2h-link"
+        >
+          0/0
+        </div> -->
+        <div class="text-end"><button class="custom-btn btn-primary-blue" (click)="
+            navigateToH2h(
+              match.matchPlayed.firstTeam.id,
+              match.matchPlayed.secondTeam.id,
+              match.matchPlayed.firstTeam.name,
+              match.matchPlayed.secondTeam.name
+            )
+          ">Prediction</button></div>
+      </div>
+      
+    </div>
+  </div>
+  <app-not-stat *ngIf="!groupByLeagues" [title]="'Upcoming Football Matches'"></app-not-stat>
+</div>
+
+<div class="row mt-1 mt-md-3">
+    <div class="col justify-content-center align-items-center d-flex flex-column all-matches">
+        <button class="btn btn-primary" (click)="navigateToMatches()">View All Football Matches</button>
+    </div>
+</div>
+<!-- <app-more
+  *ngIf="lastLength >= perPage"
+  [loaderState]="loaderState"
+  (getMore)="more()"
+>
+  View More
+</app-more> -->
+<!-- <div class="row bg-white viewmore-container" *ngIf="lastLength >= perPage">
+  <div class="col justify-content-center align-items-center d-flex  gap-1">
+    <a class="text-decoration-none text-blue text-uppercase" (getMore)="more()">View more </a>
+    <span><img src="assets/icons/arrow-down.svg"></span>
+  </div>
+</div> -->

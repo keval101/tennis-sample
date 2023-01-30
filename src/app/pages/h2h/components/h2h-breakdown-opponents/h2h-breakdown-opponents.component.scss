@@ -1,0 +1,35 @@
+@import '../../../../../styles/colors';
+:host::ng-deep {
+  tr:last-child {
+    border-bottom: 1px solid $line-color;
+  }
+  option {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 992px) {
+  h5 {
+    font-size: 12px !important;
+  }
+  ::ng-deep span {
+    font-size: 8px !important;
+  }
+}
+
+::ng-deep .breackdown-container{
+  app-short-table{
+    .short-container{
+      padding-bottom: 32px;
+      @media (max-width: 992px) {
+        padding-bottom: 16px;
+      }
+    }
+  }
+}
+
+::ng-deep .opponents-select {
+  select {
+    font-size: 14px !important;
+  }
+}

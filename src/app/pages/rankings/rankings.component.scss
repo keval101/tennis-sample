@@ -1,0 +1,106 @@
+@import '../../../styles/colors';
+@media (max-width: 991px) {
+    .table-scroll {
+        overflow-x: scroll;
+    }
+}
+
+.table-header {
+    background-color: #F1F2F5;
+}
+
+.ranking-table{
+    padding: .25rem 2rem 2rem !important;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+::ng-deep .rankings .tab-container {
+    gap: 0 !important;
+}
+::ng-deep .rankings .tab{
+    background: $light-gray !important;
+    
+    &:first-child{
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    &.active-tab {
+        background: #193050 !important
+    }
+
+    &:last-child {
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
+    }
+}
+
+::ng-deep .ranking-groups .tab{
+    flex-grow: initial !important;
+}
+
+::ng-deep .dates-selector select {
+    width:auto !important;
+}
+
+::ng-deep .country-selector select {
+    // width:100% !important;
+    width: 7rem !important;
+}
+
+.header-data{
+    border-bottom:1px solid $line-color;
+    font-weight: 400;
+    font-size: 12px;
+    color: $secondary-text !important;
+}
+.body-data{
+    font-weight: 400;
+    font-size: 14px;
+    color: $primary-text !important;
+}
+
+.table-stripe>tbody>tr:nth-child(even)>td,
+.table-stripe>tbody>tr:nth-child(even)>th {
+    background-color: $light-gray; 
+    border-radius: 2px;
+}
+
+.view-more{
+    // background: $primary;
+    border-radius: 8px;
+    color: $blue;
+    &.btn:focus {
+             box-shadow: none !important; 
+        }
+}
+
+.groups-container
+{
+    @media (max-width: 1400px) {
+        margin-bottom:1rem;
+        width:100%;
+    }     
+}
+
+.filter-selector{
+    flex-grow: 0;
+    @media (min-width: 1400px) {
+        display: flex;
+        justify-content: end;
+        flex-grow: 1;
+    }
+}
+
+.selectors
+{
+    @media (min-width:510px) and  (max-width: 1400px) {
+            width: 50%;
+        }
+}
+
+.player-text
+{
+    padding-left: 2.2rem !important;
+}

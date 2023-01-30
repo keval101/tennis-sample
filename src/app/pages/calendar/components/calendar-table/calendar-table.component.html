@@ -1,0 +1,77 @@
+<div class="row calender bg-white" *ngIf="matches.length">
+  <table class="calender-table">
+    <thead class="calender-header">
+      <tr class="text-uppercase">
+        <!-- <td class="col-1">Level</td> -->
+        <td class="text-center col-1">Court</td>
+        <td class="ps-5 col-6">Tournament</td>
+        <td>Winner</td>
+        <td></td>
+      </tr>
+    </thead>
+
+    <div class="display-none border-top-0 mb-3"></div>
+
+    <tbody class="calender-body mt-4 table-scroll" *ngFor="let week of matches">
+      <tr class="calender-topbar">
+        <td class="rounded-start" colspan="4">
+          week №{{ week.week }}
+        </td>
+        
+        <td class="rounded-end text-end">
+          {{ ConvertToDate(week.date) | date : "YYYY.MM.dd" }}
+        </td>
+      </tr>
+      <tr class="calender-data" *ngFor="let tournament of week.tournaments">
+        <!-- <td class="tournament-type col-1">Future</td> -->
+        <td class="tournament-court col-1">
+          <img [src]="'assets/icons/' + tournament.court + '.svg'" alt="" />
+        </td>
+        <td class="tournament-details d-flex align-items-center col-7">
+          <app-country-flag
+            [needSmallSizeFlag]="true"
+            class="country-flag"
+            [countryCode]="tournament.country"
+            [height]="sizeOfCalendarImages"
+            [width]="sizeOfCalendarImages"
+          ></app-country-flag>
+          <div>
+            <a
+              class="tournament-name"
+              (click)="navigateToTournament(tournament.name, tournament.date)"
+              >{{ tournament.name }}</a
+            >
+            <div class="d-flex align-items-center">
+              <p class="tournament-date">
+                {{ ConvertToDate(tournament.date) | date : "YYYY.MM.dd" }}
+              </p>
+              <p class="tournament-price">{{ tournament.prize }}</p>
+            </div>
+          </div>
+        </td>
+        <td class="tournament-winner text-nowrap col-3">
+          <ng-container *ngIf="tournament.winner.name">
+            <app-sportsman
+              [countryCode]="tournament.winner.countryAcr"
+              [fullname]="tournament.winner.name"
+            ></app-sportsman>
+          </ng-container>
+        </td>
+        <td class="tournament-stats" colspan="2">
+          <span
+            *ngIf="!tournament?.final; else finalStat"
+            class="text-capitalize no-stat-text text-nowrap"
+            ></span>
+          <ng-template #finalStat>
+            <app-match-stat
+              [winner]="tournament.final!.player1"
+              [looser]="tournament.final!.player2"
+            ></app-match-stat>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-not-stat *ngIf="!matches.length" [title]="'Data'"></app-not-stat>

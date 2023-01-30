@@ -1,0 +1,24 @@
+.match-state-wrapper {
+  border-radius: 6px;
+}
+
+.table-title {
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #12253d;
+  background: linear-gradient(90deg,
+      #dfe7ee -56%,
+      rgba(223, 231, 238, 0.18894) 32.51%,
+      rgba(223, 231, 238, 0.04) 48.76%,
+      rgba(223, 231, 238, 0.188462) 68.24%,
+      #dfe7ee 174.74%);
+  padding: 28px 0;
+}
+
+@media (max-width: 992px) {
+  h3 {
+    font-size: 14px;
+  }
+}

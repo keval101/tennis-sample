@@ -1,0 +1,545 @@
+
+<div class="row groups-container p-0">
+  <div class="col p-0">
+    <app-tab
+      [actives]="activeGroups"
+      (activeChanged)="changeActiveGroup($event)"
+    ></app-tab>
+  </div>
+</div>
+
+<div class="bg-white row information-container">
+  <ng-container [ngTemplateOutlet]="currentTable?.body || null"></ng-container>
+</div>
+
+<ng-template #recentGames let-recent>
+  <div class="d-flex match-result justify-content-around">
+    <div
+      *ngFor="let result of recent"
+      class="text-center"
+      style="padding: 0 1px"
+      [class.result-win]="result === 'w'"
+      [class.result-loose]="result === 'l'"
+    >
+      {{ result | uppercase }}
+    </div>
+    <div *ngIf="!recent.length">No matches</div>
+  </div>
+</ng-template>
+
+<ng-template #h2hSummaryBody>
+  <table class="bg-white table h2h-table-container m-0 table-borderless">
+    <tbody>
+      <tr class="align-middle">
+        <td class="text-start number-text col-1 pb-4">
+          {{ surfaceData.total1 }}
+        </td>
+        <td class="pb-4">
+          <div class="progress" style="height: 6px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total1,
+                  'range'
+                ),
+                'border-right': calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total1,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total1,
+                  'range'
+                ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.total1"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center info-text text-uppercase col-2 pb-2 pb-md-4">Total</td>
+        <td class="pb-4">
+          <div class="progress progress-container">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total2,
+                  'range'
+                ),
+                'border-left':  calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total2,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.total1,
+                  surfaceData.total2,
+                  surfaceData.total2,
+                  'range'
+                ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.total2"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-end number-text col-1 pb-4">{{ surfaceData.total2 }}</td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start number-text pb-4">{{ surfaceData.hard1 }}</td>
+        <td class="pb-4">
+          <div class="progress" style="height: 6px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.hard1,
+                  surfaceData.hard2,
+                  surfaceData.hard1,
+                  'range'
+                ),
+                'border-right': calculatePercentage(
+                  surfaceData.hard1,
+                 surfaceData.hard2,
+                 surfaceData.hard1,
+                 'range'
+               ) == '0.00%' || calculatePercentage(
+                  surfaceData.hard1,
+                 surfaceData.hard2,
+                 surfaceData.hard1,
+                 'range'
+               ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.hard1"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center info-text text-uppercase pb-4">Hard</td>
+        <td class="pb-4">
+          <div class="progress progress-container">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.hard1,
+                  surfaceData.hard2,
+                  surfaceData.hard2,
+                  'range'
+                ),
+                'border-left': calculatePercentage(
+                  surfaceData.hard1,
+                 surfaceData.hard2,
+                 surfaceData.hard2,
+                 'range'
+               ) == '0.00%' || calculatePercentage(
+                  surfaceData.hard1,
+                 surfaceData.hard2,
+                 surfaceData.hard2,
+                 'range'
+               ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.hard2"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-end number-text pb-4">{{ surfaceData.hard2 }}</td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start number-text pb-4">{{ surfaceData.clay1 }}</td>
+        <td class="pb-4">
+          <div class="progress" style="height: 6px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.clay1,
+                  surfaceData.clay2,
+                  surfaceData.clay1,
+                  'range'
+                ),
+                'border-right': calculatePercentage(
+                  surfaceData.clay1,
+                 surfaceData.clay2,
+                 surfaceData.clay1,
+                 'range'
+               ) == '0.00%' || calculatePercentage(
+                  surfaceData.clay1,
+                 surfaceData.clay2,
+                 surfaceData.clay1,
+                 'range'
+               ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.clay1"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center info-text text-uppercase pb-4">Clay</td>
+        <td class="pb-4">
+          <div class="progress progress-container">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.clay1,
+                  surfaceData.clay2,
+                  surfaceData.clay2,
+                  'range'
+                ),
+                'border-left': calculatePercentage(
+                  surfaceData.clay1,
+                 surfaceData.clay2,
+                 surfaceData.clay2,
+                 'range'
+               ) == '0.00%' || calculatePercentage(
+                  surfaceData.clay1,
+                 surfaceData.clay2,
+                 surfaceData.clay2,
+                 'range'
+               ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.clay2"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-end number-text pb-4">{{ surfaceData.clay2 }}</td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start number-text pb-4">{{ surfaceData.iHard1 }}</td>
+        <td class="pb-4">
+          <div class="progress" style="height: 6px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard1,
+                  'range'
+                ),
+                'border-right':  calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard1,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard1,
+                  'range'
+                ) == '100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.iHard1"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center info-text text-uppercase pb-4">Indoor</td>
+        <td class="pb-4">
+          <div class="progress progress-container" >
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard2,
+                  'range'
+                ),
+                'border-left':  calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard2,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.iHard1,
+                  surfaceData.iHard2,
+                  surfaceData.iHard2,
+                  'range'
+                ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.iHard2"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-end number-text pb-4">{{ surfaceData.iHard2 }}</td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start number-text">{{ surfaceData.grass1 }}</td>
+        <td class="">
+          <div class="progress" style="height: 6px;">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass1,
+                  'range'
+                ),
+                'border-right': calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass1,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass1,
+                  'range'
+                ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.grass1"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-center info-text text-uppercase">Grass</td>
+        <td class="">
+          <div class="progress progress-container">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [ngStyle]="{
+                width: calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass2,
+                  'range'
+                ),
+                'border-left':  calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass2,
+                  'range'
+                ) == '0.00%' || calculatePercentage(
+                  surfaceData.grass1,
+                  surfaceData.grass2,
+                  surfaceData.grass2,
+                  'range'
+                ) =='100.00%' ? '0px solid' : '4px solid'
+              }"
+              aria-valuenow="surfaceData.grass2"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+        </td>
+        <td class="text-end number-text">{{ surfaceData.grass2 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #profileBody>
+  <!-- <p>
+    profileBody Body
+  </p> -->
+  <table class="bg-white table m-0">
+    <tbody>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">
+          {{ getAge(playerOne.birthday) }} ({{
+            playerOne.birthday | date : "dd-MM-YYYY"
+          }})
+        </td>
+        <td class="text-center info-text" >Age</td>
+        <td class="text-end detail-text">
+          {{ getAge(playerTwo.birthday) }} ({{
+            playerTwo.birthday | date : "dd-MM-YYYY"
+          }})
+        </td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">
+          {{ getModifiedHeightWeight(playerDetails1[0].height) }}
+        </td>
+        <td class="text-center info-text">Height</td>
+        <td class="text-end detail-text">
+          {{ getModifiedHeightWeight(playerDetails2[0].height) }}
+        </td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">
+          {{ getModifiedHeightWeight(playerDetails1[0].weight) }}
+        </td>
+        <td class="text-center info-text">Weight</td>
+        <td class="text-end detail-text">
+          {{ getModifiedHeightWeight(playerDetails2[0].weight) }}
+        </td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">{{ playerDetails1[0].plays }}</td>
+        <td class="text-center info-text">Plays</td>
+        <td class="text-end detail-text">{{ playerDetails2[0].plays }}</td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">{{ playerDetails1[0].backhand }}</td>
+        <td class="text-center info-text">Backhand</td>
+        <td class="text-end detail-text">{{ playerDetails2[0].backhand }}</td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">{{ playerDetails1[0].coach }}</td>
+        <td class="text-center info-text">Coach</td>
+        <td class="text-end detail-text">{{ playerDetails2[0].coach }}</td>
+      </tr>
+      <tr class="align-middle column-width">
+        <td class="text-start detail-text">{{ playerDetails1[0].turnedPro }}</td>
+        <td class="text-center info-text">Turned Pro</td>
+        <td class="text-end detail-text">{{ playerDetails2[0].turnedPro }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+
+<ng-template #wlSummaryBody>
+  <table class="bg-white table m-0">
+    <tbody>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+          {{ playerOne.careerWLPercentage }}% ({{ playerOne.careerWin }}-{{
+            playerOne.careerLose
+          }})
+        </td>
+        <td class="text-center info-text">Career Total W/L</td>
+        <td class="text-end detail-text">
+          {{ playerTwo.careerWLPercentage }}% ({{ playerTwo.careerWin }}-{{
+            playerTwo.careerLose
+          }})
+        </td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+          {{ calculatePercentage(
+              +(careerData.Hard.firstPlayer).split('/')[0],
+              +(careerData.Hard.firstPlayer).split('/')[1],
+              +(careerData.Hard.firstPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+        <td class="text-center info-text">Career Hard W/L</td>
+        <td class="text-end detail-text">
+          {{ calculatePercentage(
+              +(careerData.Hard.secondPlayer).split('/')[0],
+              +(careerData.Hard.secondPlayer).split('/')[1],
+              +(careerData.Hard.secondPlayer).split('/')[0],
+              'player1'
+            ) }}
+          <!-- {{
+            calculatePercentage(
+              surfaceData.hard1,
+              surfaceData.hard2,
+              surfaceData.hard2,
+              "player2"
+            )
+          }} -->
+        </td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+           {{ calculatePercentage(
+              +(careerData.Clay.firstPlayer).split('/')[0],
+              +(careerData.Clay.firstPlayer).split('/')[1],
+              +(careerData.Clay.firstPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+        <td class="text-center info-text">Career Clay W/L</td>
+        <td class="text-end detail-text">
+           {{ calculatePercentage(
+              +(careerData.Clay.secondPlayer).split('/')[0],
+              +(careerData.Clay.secondPlayer).split('/')[1],
+              +(careerData.Clay.secondPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+          {{ calculatePercentage(
+              +(careerData.Grass.firstPlayer).split('/')[0],
+              +(careerData.Grass.firstPlayer).split('/')[1],
+              +(careerData.Grass.firstPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+        <td class="text-center info-text">Career Grass W/L</td>
+        <td class="text-end detail-text">
+          {{ calculatePercentage(
+              +(careerData.Grass.secondPlayer).split('/')[0],
+              +(careerData.Grass.secondPlayer).split('/')[1],
+              +(careerData.Grass.secondPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+          {{ calculatePercentage(
+              +(careerData.Indoor.firstPlayer).split('/')[0],
+              +(careerData.Indoor.firstPlayer).split('/')[1],
+              +(careerData.Indoor.firstPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+        <td class="text-center info-text">Career Indoor W/L</td>
+        <td class="text-end detail-text">
+          {{ calculatePercentage(
+              +(careerData.Indoor.secondPlayer).split('/')[0],
+              +(careerData.Indoor.secondPlayer).split('/')[1],
+              +(careerData.Indoor.secondPlayer).split('/')[0],
+              'player1'
+            ) }}
+        </td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">${{ playerOne.careerMoney }}</td>
+        <td class="text-center info-text">Career Prize Money</td>
+        <td class="text-end detail-text">${{ playerTwo.careerMoney }}</td>
+      </tr>
+      <tr class="align-middle">
+        <td class="text-start detail-text">
+          {{ playerOne.ytdWLPercentage }}% ({{ playerOne.ytdWon }}-{{
+            playerOne.ytdLost
+          }})
+        </td>
+        <td class="text-center info-text">YTD W/L</td>
+        <td class="text-end detail-text">
+          {{ playerTwo.ytdWLPercentage }}% ({{ playerTwo.ytdWon }}-{{
+            playerTwo.ytdLost
+          }})
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

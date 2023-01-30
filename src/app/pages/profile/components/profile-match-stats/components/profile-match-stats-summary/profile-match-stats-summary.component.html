@@ -1,0 +1,49 @@
+
+  <div class="row">
+    
+      <div class="h2h-header text-uppercase m-0">{{ playerName }} Surface Summary</div>
+    
+  </div>
+
+  <div class="row">
+    <div class="col px-0">
+      <div class="bg-white text-nowrap summary-container table-bottom">
+        <table class="table mb-0">
+          <thead>
+            <tr class="text-uppercase text-start">
+              <td class="py-1 py-md-2 px-0 ps-2 ps-md-4 col-2">
+                <span class="py-1 py-md-2">year</span>
+              </td>
+              <td class="text-center py-1 py-md-2 px-0 col-2">
+                <span class="py-1 py-md-2">All</span>
+              </td>
+              <td class="text-center py-1 py-md-2 px-0 col-2">
+                <span class="py-1 py-md-2">hard</span>
+              </td>
+              <td class="text-center py-1 py-md-2 px-0 col-2">
+                <span class="py-1 py-md-2">clay</span>
+              </td>
+              <td class="text-center py-1 py-md-2 px-0 col-2">
+                <span class="py-1 py-md-2">indoor</span>
+              </td>
+              <td class="text-end py-1 py-md-2 px-0 pe-2 pe-md-4 col-2">
+                <span class="py-1 py-md-2">grass</span>
+              </td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let summary of summary" class="align-middle">
+              <td class="px-0 ps-2 ps-md-4">{{ summary.year }}</td>
+              <td class="px-0 text-center">{{ summary.sum.w }}-{{ summary.sum.l }}</td>
+              <td class="px-0 text-center">{{ summary.hard.w }}-{{ summary.hard.l }}</td>
+              <td class="px-0 text-center">{{ summary.clay.w }}-{{ summary.clay.l }}</td>
+              <td class="px-0 text-center">{{ summary.ihard.w }}-{{ summary.ihard.l }}</td>
+              <td class="px-0 text-end pe-2 pe-md-4">{{ summary.grass.w }}-{{ summary.grass.l }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+

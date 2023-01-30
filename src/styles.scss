@@ -1,0 +1,384 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "styles/icons";
+@import "styles/colors";
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: $light-gray !important;
+}
+
+* {
+  // font-family: "Source Code Pro", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.border-radius {
+  border-radius: 6px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.coef-0,
+.coef-1,
+.coef-2,
+.coef-3 {
+  border-radius: 5px;
+  padding: 3px 8px;
+  color: white;
+}
+
+.coef-0 {
+  background: #BB654D;
+}
+
+.coef-1 {
+  background: #C99E57;
+}
+
+.coef-2 {
+  background: #7CBF7F;
+}
+
+.coef-3 {
+  background: #4B975B;
+}
+
+.grass,
+.clay,
+.hard,
+.indoor {
+  color: white
+}
+
+.hard,
+.grass {
+  background: #019633;
+}
+
+.empty-span-little {
+  height: 2.5em;
+}
+
+.empty-span {
+  height: 2.6em;
+}
+
+.table > tbody {
+  border-top: none !important;
+}
+
+table tr:last-child td {
+  border-bottom-width: 0;
+}
+
+.table-title {
+  font-size: 16px !important;
+}
+
+.table-header {
+  padding-right: 16px;
+}
+
+.bg-light-gray {
+  background: #F1F2F5;
+}
+
+.table > thead > tr > td {
+  span {
+    // background: #F1F2F5;
+    // color: black;
+    width: 100%;
+    display: block;
+  }
+
+  &:first-child span {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+
+  &:last-child span {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.draw-quartal {
+  color: #5986c9;
+}
+
+tr:last-child > td,
+tr:last-child > th {
+  border-bottom: none !important;
+}
+
+button {
+  border: none;
+}
+
+a:hover,
+.link,
+.link-primary {
+  cursor: pointer;
+}
+
+.match-result {
+  font-size: 14px;
+
+  &:last-child {
+    margin: 0 !important;
+  }
+
+  .result {
+    &-win {
+      background: $win;
+    }
+
+    &-loose {
+      background: $lost;
+    }
+
+    &-win,
+    &-loose {
+      display: flex;
+      color: white;
+      width: 1.5rem;
+      height: 1.5rem;
+      text-align: center;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      @media (max-width:768px) {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}
+
+.description {
+  color: #697077;
+}
+
+.icon {
+  &-win {
+    width: 0.9em;
+    height: 0.9em;
+  }
+}
+
+.releative {
+  position: relative;
+}
+
+.put-forward {
+  z-index: 99999 !important;
+}
+
+.text-blue {
+  color: $blue !important;
+}
+
+.text-gray {
+  color: $secondary-text;
+}
+
+.text-data {
+  font-size: 14px;
+  font-weight: 600;
+  color: $primary-text;
+}
+
+.text-score {
+  font-size: 14px;
+  font-weight: 600;
+  color: $primary-text;
+
+  @media (max-width: 992px) {
+    font-size: 8px !important;
+  }
+}
+
+.border-right {
+  &:not(:last-child) {
+    border-right: 1px solid $line-color;
+  }
+}
+
+.data-padding {
+  padding-left:32px !important;
+  @media (max-width:992px) {
+    padding-left: 16px !important;
+  }
+}
+
+.h2h-header {
+  color: $primary-text;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  padding: 28px 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    #dfe7ee -56%,
+    rgba(223, 231, 238, 0.18894) 32.51%,
+    rgba(223, 231, 238, 0.04) 48.76%,
+    rgba(223, 231, 238, 0.188462) 68.24%,
+    #dfe7ee 174.74%
+  );
+  @media (max-width: 992px) {
+    font-size: 14px;
+    padding: 14px 0;
+  }
+}
+
+.viewmore-container {
+  font-size: 14px;
+  border-top: 1px dashed $line-color;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 20px 0;
+
+  a:hover {
+    color: $hover-blue !important;
+  }
+
+  img {
+    margin-bottom: .2rem;
+  }
+
+  @media (max-width: 992px) {
+    padding: 10px 0 !important;
+    img {
+      width: 10px;
+      margin-bottom: .1rem;
+    }
+    a {
+      font-size: 10px !important;
+    }
+  }
+}
+
+.margin-container {
+  margin-top: 20px !important;
+}
+
+.sidebar-container {
+  margin-left: 1.25rem;
+  padding: 0 0.75rem !important;
+  @media (max-width: 992px) {
+    margin-left: 0;
+    padding: 0 !important;
+  }
+}
+
+.table-shadow {
+  box-shadow: 0px 1px 1px rgba(11, 15, 50, 0.06);
+}
+
+.table-bottom {
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+
+.custom-scrollbar {
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgba(196, 196, 196, 0.7);
+  }
+}
+
+.cursor-pointer{
+    cursor: pointer;
+  }
+
+  .no-stat-text {
+    font-size: 14px;
+    @media (max-width:992px) {
+      font-size: 8px;
+    }
+  }
+
+    .btn-primary-blue {
+      color: $white;
+      background: #3a63f3;
+      padding: 7px 8px;
+  
+      &:hover {
+        background: $hover-blue;
+        box-shadow: 0px 8px 15px rgba(78, 115, 244, 0.2);
+      }
+  
+      @media (max-width:992px) {
+        padding: 4px 8px;
+      }
+    }
+  
+    .custom-btn {
+      border-radius: 6px;
+      border: none;
+      width: fit-content;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: normal;
+      cursor: pointer;
+  
+      @media (max-width:992px) {
+        border-radius: 4px;
+        font-size: 8px;
+      }
+    }
+  
+  
+    .btn-win,
+    .btn-draw,
+    .btn-lost {
+      background: $win;
+      border: none;
+      border-radius: 3px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include font-params(14px, $white, 600, 16px);
+  
+      @include for-phone-only {
+        width: 13px;
+        height: 13px;
+        font-size: 8px;
+      }
+    }
+  
+    .btn-draw {
+      background: $draw;
+    }
+  
+    .btn-lost {
+      background: $lost;
+    }

@@ -1,0 +1,14 @@
+<div class="row header-title">
+    <p class="title">Featured Detailed Tennis Head To Head</p>
+</div>
+<div class="row mt-2 mt-md-5 py-3 px-2 px-md-4 bg-white border-radius"  *ngIf="profiles" >
+    <app-h2h-information [playerOne]="profiles.player1" [playerTwo]="profiles.player2" [surfaceData]="profiles.surfaceData" [statistics1]="statistics1" [statistics2]="statistics2"></app-h2h-information>
+    <app-h2h-information-table [playerOne]="profiles.player1" [playerTwo]="profiles.player2" ></app-h2h-information-table>
+</div>
+<div *ngIf="profiles">
+    <div class="row mt-1 mt-md-3">
+        <div class="col justify-content-center align-items-center d-flex flex-column prediction">
+            <button class="btn btn-primary" (click)="navigateToH2h(profiles.player1.name, profiles.player2.name)">View Match Prediction</button>
+        </div>
+    </div>
+</div>

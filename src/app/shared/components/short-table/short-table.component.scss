@@ -1,0 +1,72 @@
+@import '../../../../styles/colors';
+.table-wrap {
+  border-radius: 5px;
+}
+
+.short-container{
+  padding: 0 32px;
+
+  @media (max-width: 992px) {
+    padding: 0 16px;
+  }
+}
+
+tbody {
+  border-top: none !important;
+
+  > tr > td {
+    text-align: center;
+    &:last-child {
+      text-align: end;
+    }
+    &:first-child {
+      text-align: start;
+    }
+  }
+
+}
+
+thead > tr > th.header-dark {
+  background: #21272A;
+  color: white;
+}
+
+table td{
+  font-size: 14px
+
+} table th {
+  font-size: 12px;
+  font-weight: 600;
+
+  @media (max-width: 992px) {
+    font-size: 8px;
+  }
+}
+
+.text-description {
+  font-size: 12px;
+  color: #888;
+}
+
+tr:last-child > td, tr:last-child > th {
+  border-bottom-width: 0;
+}
+
+td {
+  vertical-align: middle;
+}
+
+@media (max-width: 992px) {
+  span {
+    font-size: 10px;
+  }
+}
+
+
+.click-event {
+  transition: 0.2s;
+  cursor: pointer;
+}
+.click-event:hover {
+  color: $secondary-text;
+}

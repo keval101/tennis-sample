@@ -1,0 +1,71 @@
+@import "../../../../styles/colors";
+
+.wrap {
+  cursor: pointer;
+  p {
+    color: #376bb2;
+    line-height: 0.5em;
+  }
+  img {
+    width: 16px;
+    @media (max-width: 600px) { width: 12px; }
+  }
+}
+
+.stats-modal {
+  position: absolute;
+    // min-width: 130px;
+  border-radius: 6px;
+  width: max-content;
+  top: 0px;
+  z-index: 1000;
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.6) 0px 7px 19px 0px;
+  font-size: 14px;
+  transform: translate(-45%);
+
+  @media (max-width: 992px) {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-modal {
+    transform: none;
+    left: 5%;
+    right: 5%;
+  }
+}
+
+.last-row {
+  >.col {
+    border-bottom: 0px solid #ddd !important;
+  }
+}
+
+.info-line {
+  color: $primary-text;
+  p {
+    white-space: nowrap;
+  }
+
+  > .col {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.text-left-red {
+  color: $lost;
+}
+
+.text-right-green {
+  color: $win;
+}
+
+.profile-link {
+  cursor: pointer;
+  transition: 0.2s;
+}
+.profile-link:hover {
+  color: $secondary-text;
+}

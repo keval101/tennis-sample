@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row p-2">
+    <div class="col">
+
+      <div class="row mt-4">
+        <div class="col px-0">
+          <div class="welcome-text">Welcome to Stevegtennis.com, the oldest tennis results and stats website in the world! Whether you are looking for historical tennis data or current match predictions, we have all the tennis stats at your disposal. Check out our head to head pages for detailed comparisons between past or current players.</div>
+        </div>
+      </div>
+
+      <div class="row margin-container">
+        <div class="col">
+          <app-live-events></app-live-events>
+        </div>
+      </div>
+
+      <div class="row margin-container px-0">
+        <div class="col matches-component px-0">
+          <app-matches [isMatchesPage]="false"></app-matches>
+        </div>
+      </div>
+      
+
+      <div class="row margin-container">
+        <div class="col px-0">
+          <app-h2h-search-tennis-atp [title]="'Tennis ATP H2H Search'"></app-h2h-search-tennis-atp>
+        </div>
+      </div>
+      <div class="row margin-container">
+        <div class="col px-0">
+          <app-h2h-search-tennis-atp [title]="'Tennis WTA H2H Search'" [type]="'wta'"></app-h2h-search-tennis-atp>
+        </div>
+      </div>
+
+      <app-interesting-h2h></app-interesting-h2h>
+
+      <div class="row margin-container">
+        <div class="col px-0">
+          <app-football-matches></app-football-matches>
+        </div>
+      </div>
+      <!-- <div class="row mt-5">
+        <div class="col">
+          <app-h2h-search-football-clubs></app-h2h-search-football-clubs>
+        </div>
+      </div> -->
+      
+    </div>
+
+    <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container">
+      <app-sidebar [showAtpRanking]="false" [activeType]="'atp'"></app-sidebar>
+    </div>
+  </div>
+</div>

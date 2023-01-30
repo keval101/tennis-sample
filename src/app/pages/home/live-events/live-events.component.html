@@ -1,0 +1,81 @@
+<div class="row bg-white  p-0 live-header">
+  <div class="col d-flex flex-column px-4 p-1 bg-white py-md-2 pb-0">
+    <div
+      class="d-flex justify-content-between row text-uppercase bg-light-gray border-radius calendar_header my-1 mx-1 my-md-2 mx-md-1 mt-1 mt-md-3"
+    >
+      <div class="p-1 p-md-2 col title text-center">Men’s Tennis On Now</div>
+      <div class="p-1 p-md-2 col title text-center">Women’s Tennis On Now</div>
+    </div>
+  </div>
+  </div>
+
+  <div class="row px-2 bg-white live-events">
+    <div class="col-6 event left-event pb-3 ">
+      <div class="row align-items-center p-1 p-md-2" *ngFor="let item of atpLiveEvents">
+
+        <div class="col-2 event-court text-center">
+          <img [src]="'assets/icons/' + item.courtName?.toLowerCase() + '.svg'"/>
+        </div>
+
+        <div class="col-1 title text-center px-0">
+            <app-country-flag
+                class="event-flag"
+                [countryCode]="(item.country.substring(0,3)).toUpperCase()"
+            ></app-country-flag>
+        </div>
+
+        <div class="col-9 ">
+          <div class="">
+
+            <a class="m-0 text-decoration-none event-link link" (click)="navigateToTournament('atp',item.name,item.date)">{{item.name}}</a>
+
+            <div class="m-0 d-flex">
+              <p class="m-0 event-date">{{ item.date | date : "YYYY.MM.dd"}}</p>
+              <p class="m-0 ms-3 event-prize">{{item.prize}}</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <app-not-stat *ngIf="!atpLiveEvents.length" [title]="'Men’s Tennis On Now'"></app-not-stat>
+    </div>
+    <div class="col-6 pb-3 event ">
+        <div class="row align-items-center p-1  p-md-2" *ngFor="let item of wtaLiveEvents">
+
+            <div class="col-2 event-court">
+              <img [src]="'assets/icons/' + item.courtName?.toLowerCase() + '.svg'"/>
+            </div>
+    
+            <div class="col-1 title px-0">
+                <app-country-flag
+                    class="event-flag"
+                    [countryCode]="(item.country.substring(0,3)).toUpperCase()"
+                ></app-country-flag>
+            </div>
+    
+            <div class="col-9">
+              <div class="">
+    
+                <a class="m-0 text-decoration-none event-link" (click)="navigateToTournament('wta',item.name,item.date)">{{item.name}}</a>
+    
+                <div class="m-0 d-flex">
+                  <p class="m-0 event-date">{{ item.date | date : "YYYY.MM.dd"}}</p>
+                  <p class="m-0 ms-3 event-prize">{{item.prize}}</p>
+                </div>
+
+    
+              </div>
+    
+            </div>
+          </div>
+          <app-not-stat *ngIf="!wtaLiveEvents.length" [title]="'Women’s Tennis On Now'"></app-not-stat>
+    </div>
+  </div>
+
+
+<div class="row mt-1 mt-md-3">
+    <div class="col justify-content-center align-items-center d-flex flex-column all-matches">
+        <button class="btn btn-primary" (click)="allUpcoming()">View Full Tennis Calendar</button>
+    </div>
+</div>

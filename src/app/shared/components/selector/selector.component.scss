@@ -1,0 +1,26 @@
+@import '../../../../styles/colors';
+select {
+  background-color: transparent;
+  border:none;
+  color: $secondary-text;
+  font-weight: 400;
+  font-size: 16px;
+  outline: 0px;
+  max-width: 100%;
+    text-overflow: ellipsis;
+}
+
+option {
+  padding: 7px 14px;
+  @media (max-width: 992px) {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  div, select, option {
+    font-size: 8px !important;
+  }
+}
+
+

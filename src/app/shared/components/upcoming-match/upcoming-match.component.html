@@ -1,0 +1,75 @@
+<div class="margin-container">
+  <div class="upcoming-header text-uppercase">{{teamName + ' ' + title}}</div>
+  <div class="upcoming-description" 
+  *ngIf="upcoming && (upcoming.firstTeam | json) != ({} | json) && (upcoming.secondTeam | json) != ({} | json)">
+    <div class="upcoming-head">
+      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.firstTeam?.name ? navigateToTeam(upcomingMatch?.firstTeam?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+        <img class="team-logo cursor-pointer" [src]="upcoming?.firstTeam?.logo_path"  alt="" />
+        <div class="match-team cursor-pointer">{{ upcoming?.firstTeam?.name }}</div>
+        <!-- <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div> -->
+        <!-- <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div> -->
+      </div>
+      <div class="match-info pointer" (click)="upcomingMatch?.league?.name ? navigateToLeague(upcomingMatch?.league?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+        <div class="match-header cursor-pointer">
+            <img [src]="upcoming?.league?.logo_path" />
+            <div class="match-name">{{ upcoming?.league?.name }}</div>
+        </div>
+        <div class="match-time">
+            <div class="text-day">{{getDateText(upcoming?.dateTime)}}</div>
+            <div class="mt-2">{{ upcoming?.dateTime | date: "dd MMM" }}, {{ upcoming?.dateTime | date: "hh:mm" }}</div>
+            <!-- <div class="d-flex gap-2 mb-2" >
+                <div class="match-point">{{upcoming?.odds?.oddFirstTeam ?? 'N/A'}}</div>
+                <div class="match-point">{{upcoming?.odds?.oddSecondTeam ?? 'N/A'}}</div>
+            </div> -->
+        </div>
+      </div>
+      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.secondTeam?.name ? navigateToTeam(upcomingMatch?.secondTeam?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+        <img class="team-logo cursor-pointer" [src]="upcoming?.secondTeam?.logo_path" alt="" />
+        <div class="match-team cursor-pointer">{{ upcoming?.secondTeam?.name }}</div>
+        <div class="d-flex flex-wrap match-result">
+          <!-- <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div>
+        </div>
+        <div class="d-flex flex-wrap match-result">
+          <div
+            *ngFor="let result of recentGames; let i = index"
+            class="results"
+            [class.results--win]="result === 'w'"
+            [class.results--lose]="result === 'l'"
+          >
+            {{ result === "w" ? "W" : "L" }}
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center gap-1 " (click)="navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+        <div class="text-uppercase text-view cursor-pointer">view predictions</div>
+        <img src="assets/icons/arrow-down.svg" alt="" class="pointer" style="transform: rotate(-90deg);width:12px"/>
+    </div>
+  </div>
+  <app-not-stat *ngIf="!upcoming ||  (upcoming.firstTeam | json) == ({} | json) || (upcoming.secondTeam | json) == ({} | json)" [title]="title" class="upcoming-not"></app-not-stat>
+</div>

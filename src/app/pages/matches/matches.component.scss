@@ -1,0 +1,50 @@
+@import '../../../styles/colors';
+ app-h2h-information {
+    ::ng-deep .h2h-info-container {
+        margin-top: 0 ;
+    }
+    
+    ::ng-deep .h2h-wrap {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}
+
+.matches-header {
+    background-color: $primary;
+    color: $white;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    padding: 28px 0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+
+    @media (max-width: 992px) {
+        font-size: 14px !important;
+        padding: 14px 0;
+    }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: $blue;
+    font-weight: 600;
+    padding: 6px 18px;
+    border: 0px solid;
+
+    &:hover {
+            background: $hover-blue;
+            box-shadow: 0px 8px 15px rgba(78, 115, 244, 0.2);
+        }
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    @media (max-width:992px) {
+        font-weight: 400;
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}

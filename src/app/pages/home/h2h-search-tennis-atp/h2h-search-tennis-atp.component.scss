@@ -1,0 +1,119 @@
+@import "../../../../styles/mixins";
+@import "../../../../styles/colors";
+
+.card {
+  width: 100%;
+  padding: 32px;
+  background-color: $dark-gray;
+  border: 0px;
+  border-radius: 6px;
+  @media (max-width:992px) {
+    padding: 16px;
+    margin: 0;
+  }
+  &-bdy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap:16px;
+  }
+}
+
+app-search {
+  max-width: 100%;
+  width: 100%;
+
+  ::ng-deep .icon-search {
+    right: 0;
+    left:12px;
+  }
+
+  ::ng-deep .search-input {
+    border: 0px solid transparent !important;
+    outline: none;
+    border-radius: 8px;
+    height: 40px;
+    padding: 9px 16px 9px 39px;
+    @media (max-width:992px) {
+      height: 30px;
+      border-radius: 5px;
+      font-size: 8px;
+      padding: 5px 8px 5px 25px;
+    }
+  }
+
+    @media (max-width:992px) {
+    max-width: 100% !important;
+  }
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  color: $primary-text;
+  text-transform: uppercase;
+  @media (max-width:992px) {
+    font-size: 14px;
+  }
+  // @include font-params(20px, #21272A, 600, 24px);
+  // margin-right: auto;
+
+  // @include for-phone-only {
+  //   font-size: 10px;
+  // }
+}
+
+.vs {
+  font-weight: 600;
+    font-size: 16px;
+    color: $blue;
+    text-transform: uppercase;
+  
+    @media (max-width:992px) {
+      font-size: 8px;
+    }
+  // margin: 0 20px;
+  // font-weight: 600;
+
+  // @include for-phone-only {
+  //   font-size: 8px;
+  //   margin: 0 10px;
+  // }
+}
+
+.btn-search {
+  background: $primary;
+  padding: 11px 12px;
+  color: white;
+  font-size: 14px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  box-shadow: none;
+  @media (max-width:992px) {
+      height: 30px;
+      border-radius: 5px;
+      font-size: 8px;
+    }
+
+  // @include for-phone-only {
+  //   font-size: 11px;
+  //   height: 20px;
+  //   padding: 0 9px;
+  //   margin-left: 7px;
+  //   margin-top: 4px;
+  // }
+}
+
+@include for-phone-only {
+  .title {
+    margin-bottom: 10px;
+  }
+}

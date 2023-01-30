@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="h2h-header text-uppercase">
+    {{ player }} Performance Breakdown
+    <app-profile-performance-year-picker
+      [selectedYear]="currentYear"
+      [years]="years"
+      (changeYear)="selectedYear($event); currentYear = $event"
+    ></app-profile-performance-year-picker>
+  </div>
+</div>
+
+<div class="card-container row">
+  <div class="col-6 px-0 table-right-border">
+    <div class="d-flex justify-content-between">
+      <h5 class="table-title">Tournament Level Breakdown</h5>
+    </div>
+    <app-short-table
+      class="custom-scrollbar"
+      [height]="heightUpperTable"
+      [headers]="tableHeaders"
+      [data]="level[currentYear]"
+    ></app-short-table>
+  </div>
+  <div class="col-6 px-0 table-left-border">
+    <div class="d-flex justify-content-between">
+      <h5 class="table-title">Opponent Rank Breakdown</h5>
+    </div>
+    <app-short-table
+      class="custom-scrollbar"
+      [height]="heightUpperTable"
+      [headers]="tableHeaders"
+      [data]="rank[currentYear]"
+    ></app-short-table>
+  </div>
+</div>
+
+<div class="card-container row table-bottom">
+  <div class="col-6 px-0 table-right-border">
+    <div class="d-flex justify-content-between">
+      <h5 class="table-title">Surface Breakdown</h5>
+    </div>
+    <app-short-table
+      class="custom-scrollbar"
+      [height]="heightLowerTable"
+      [headers]="tableHeaders"
+      [data]="surface[currentYear]"
+    ></app-short-table>
+  </div>
+  <div class="col-6 px-0 table-left-border">
+    <div class="d-flex justify-content-between">
+      <h5 class="table-title">Round Breakdown</h5>
+    </div>
+    <app-short-table
+      class="custom-scrollbar"
+      [height]="heightLowerTable"
+      [headers]="tableHeaders"
+      [data]="round[currentYear]"
+    ></app-short-table>
+  </div>
+</div>
+

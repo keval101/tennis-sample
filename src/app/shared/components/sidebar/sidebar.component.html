@@ -1,0 +1,122 @@
+<div class="wrap pt-4 sticky-top">
+  <div class="text-nowrap" *ngIf="showAtpRanking">
+    <table class="table my-0 fs-6 table-wrap table-borderless bg-white tabel-border">
+      <thead>
+        <tr>
+          <th colspan="4">
+            <img src="assets/icons/star.svg" class="pe-2 pb-1" />ATP Rankings</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          class="profile-link align-middle"
+          *ngFor="let row of atpRankings; let i = index"
+          (click)="navigateToProfile(row.player.name)"
+          href="/asdf"
+        >
+          <td class="pe-0 number-text">{{ i + 1 }}</td>
+          <td class="text-nowrap ps-0 atp-player">
+              <app-sportsman
+                [isShortName]="false"
+                [fullname]="row.player.name"
+                [countryCode]="row.player.countryAcr"
+                [hasLink]="true"
+              ></app-sportsman>
+          </td>
+          <td class="text-end text-blue">
+            {{ row.point }} PTS
+          </td>
+        </tr>
+        <tr *ngIf="!atpRankings.length"><app-not-stat [title]="'ATP Rankings'"></app-not-stat></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-nowrap" *ngIf="showInterestingH2h">
+    <table class="table my-0 fs-6 table-wrap table-borderless bg-white tabel-border">
+      <thead>
+        <tr>
+          <th colspan="4">
+            <img src="assets/icons/star.svg" class="pe-2 pb-1" />Interesting H2H's
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="align-middle"
+          *ngFor="let row of interestingH2h; let i = index"
+          style="background-color: #FFFF !important"
+        >
+          <td class="sportsman-data">
+            <div class="mb-1">
+              <app-sportsman
+                [isShortName]="false"
+                [fullname]="row.player1.name"
+                [countryCode]="row.player1.countryAcr"
+                [hasLink]="true"
+              ></app-sportsman>
+            </div>
+            <div>
+              <app-sportsman
+                [isShortName]="false"
+                [fullname]="row.player2.name"
+                [countryCode]="row.player2.countryAcr"
+                [hasLink]="true"
+              ></app-sportsman>
+            </div>
+          </td>
+          <td class="pe-0">
+            <p class="text-end wins-description mb-1">{{ row.player1Wins }}</p>
+            <p class="text-end wins-description">{{ row.player2Wins }}</p>
+          </td>
+          <td class="ps-3 pe-3 col-1">
+            <img src="assets/icons/divider.svg" style="height: 4em" />
+          </td>
+          <td class="text-end ps-0 chart-img col-1">
+            <img class="h2h-link" src="assets/icons/chart.svg" (click)="navigateToH2h(row.player1.name, row.player2.name)"/>
+          </td>
+        </tr>
+        <tr *ngIf="!interestingH2h.length"><app-not-stat [title]="'Interesting H2H'"></app-not-stat></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="margin-container table-wrap" *ngIf="showLiveEvents">
+    <table class="table my-0 fs-6 table-borderless bg-white tabel-border">
+      <thead>
+        <tr>
+          <th colspan="4" class="pe-4">
+            <span class="event-title"
+              ><img src="assets/icons/ellipse-red.svg" class="pe-3 ps-3" />
+              Live </span
+            >Events
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+         <tr class="tournament-link" (click)="navigateToTournament(liveEvent.name, liveEvent.date)"
+          *ngFor="let liveEvent of liveEvents; let i = index">
+          <td class="col-1 pe-2 image-wrapper">
+            <!-- <img
+              [src]="liveEvent.image"
+              style="width: 3em"
+              onerror="this.onerror=null; this.src='assets/icons/sportsman-images/noprofile.bmp'"
+            /> -->
+            <img
+              src="assets/icons/sportsman-images/noprofile.bmp"
+              style="width: 3em"
+            />
+          </td>
+          <td>
+            <p class="m-0 p-0 text-head">{{ liveEvent.name }}</p>
+            <p class="m-0 p-0 text-description">{{ liveEvent.country }}</p>
+          </td>
+        </tr>
+        <tr *ngIf="!liveEvents.length"><app-not-stat [title]="'Live Events'"></app-not-stat></tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
