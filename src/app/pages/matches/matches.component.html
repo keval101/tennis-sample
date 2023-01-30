@@ -2,7 +2,6 @@
   <div class="row p-2">
     <div class="col">
       <app-upcoming-matches
-        (dataEmit)="getUpcomingMatchedData($event)"
         [viewbtn]="isMatchesPage"
       ></app-upcoming-matches>
       <div class="row margin-container justify-content-center">
@@ -43,7 +42,7 @@
       
     </div>
     <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container" *ngIf="isMatchesPage">
-      <app-sidebar [showAtpRanking]="false" [activeType]="type"></app-sidebar>
+      <app-sidebar [showAtpRanking]="false" [activeType]="type" (emitATPInterestingH2h)="getUpcomingMatchedData($event)"></app-sidebar>
     </div>
   </div>
 </div>

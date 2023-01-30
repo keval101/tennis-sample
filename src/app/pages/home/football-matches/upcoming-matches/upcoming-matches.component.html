@@ -103,7 +103,7 @@
         <div class="group_img"><img [src]="match.logo_path" class="icon" /></div>
         <div class="group_link flex-grow-1"><a
           class="m-0 league-link text-decoration-none fw-bold"
-          (click)="navigateToLeague(match!.group)"
+          (click)="navigateToLeague(match!.group,match.id)"
         >
           {{ match!.group }}
         </a></div>
@@ -111,7 +111,7 @@
       
       <div class="grid-item pointer" *ngIf="match?.matchPlayed">
         <app-away-team
-          (click)="navigateToTeamPage(match.matchPlayed.firstTeam.name)"
+          (click)="navigateToTeamPage(match.matchPlayed.firstTeam.name,match.matchPlayed.firstTeam.id)"
           [awayEmblem]="match.matchPlayed.firstTeam.logo_path"
           [away]="match.matchPlayed.firstTeam.name"
           [needSmallIcon]="true"
@@ -119,7 +119,7 @@
         ></app-away-team>
 
         <app-away-team
-          (click)="navigateToTeamPage(match.matchPlayed.secondTeam.name)"
+          (click)="navigateToTeamPage(match.matchPlayed.secondTeam.name,match.matchPlayed.secondTeam.id)"
           [needSmallIcon]="true"
           [awayEmblem]="match.matchPlayed.secondTeam.logo_path"
           [away]="match.matchPlayed.secondTeam.name"

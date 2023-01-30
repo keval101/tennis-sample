@@ -10,8 +10,8 @@
   </div>
 
   <div class="row px-2 bg-white live-events">
-    <div class="col-6 event left-event pb-3 ">
-      <div class="row align-items-center p-1 p-md-2" *ngFor="let item of atpLiveEvents">
+    <div class="col-6 event left-event ">
+      <div class="row align-items-center p-1 p-md-2" *ngFor="let item of atpLiveEvents.slice(0, 8)" >
 
         <div class="col-2 event-court text-center">
           <img [src]="'assets/icons/' + item.courtName?.toLowerCase() + '.svg'"/>
@@ -40,8 +40,8 @@
       </div>
       <app-not-stat *ngIf="!atpLiveEvents.length" [title]="'Men’s Tennis On Now'"></app-not-stat>
     </div>
-    <div class="col-6 pb-3 event ">
-        <div class="row align-items-center p-1  p-md-2" *ngFor="let item of wtaLiveEvents">
+    <div class="col-6 event">
+        <div class="row align-items-center p-1  p-md-2" *ngFor="let item of wtaLiveEvents.slice(0, 8)">
 
             <div class="col-2 event-court">
               <img [src]="'assets/icons/' + item.courtName?.toLowerCase() + '.svg'"/>

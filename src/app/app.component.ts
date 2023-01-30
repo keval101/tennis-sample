@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'matchstat';
 
-  scroll(): void {
-    window.scrollTo(0,0)
+  onActivate(event: any) {
     document.body.scrollTop = 0;
   }
+
 }

@@ -16,7 +16,7 @@
 
       <div class="row margin-container px-0">
         <div class="col matches-component px-0">
-          <app-matches [isMatchesPage]="false"></app-matches>
+          <app-matches [isMatchesPage]="false" [playerOne]="playerOne" [playerTwo]="playerTwo" ></app-matches>
         </div>
       </div>
       
@@ -48,7 +48,7 @@
     </div>
 
     <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container">
-      <app-sidebar [showAtpRanking]="false" [activeType]="'atp'"></app-sidebar>
+      <app-sidebar [showAtpRanking]="false" [activeType]="'atp'"(emitATPInterestingH2h)="getFeaturedMatch($event)"></app-sidebar>
     </div>
   </div>
 </div>

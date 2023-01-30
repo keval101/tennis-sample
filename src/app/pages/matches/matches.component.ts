@@ -33,8 +33,8 @@ export class MatchesComponent implements OnInit {
 
   @Input() isMatchesPage = true;
 
-  public playerOne!: string | any;
-  public playerTwo!: string | any;
+  @Input() playerOne!: string | any;
+  @Input() playerTwo!: string | any;
   public type: string = '';
   careerData: any;
   constructor(
@@ -49,9 +49,6 @@ export class MatchesComponent implements OnInit {
       this.statistics1 = undefined;
       this.statistics2 = undefined;
       this.type = params['type'] || 'atp';
-      this.playerOne = params['playerOne'];
-      this.playerTwo = params['playerTwo'];
-      this.getProfileInformation(params['playerOne'], params['playerTwo']);
     });
 
     const metaObject = {
@@ -63,7 +60,20 @@ export class MatchesComponent implements OnInit {
     if(this.isMatchesPage) {
       this.metaTagService.updateTheMetaTags(metaObject);
     }
+  }
 
+  ngOnChanges(): void {
+    if(this.playerOne && this.playerTwo) {
+          this.getProfileInformation(this.playerOne, this.playerTwo);
+
+          this.profiles$ = this.h2hService.getProfilesData(
+            this.type,
+            this.playerOne,
+            this.playerTwo
+          );
+
+          this.fetchH2hBreakdown(this.playerOne, this.playerTwo);
+    }
   }
   getProfileInformation(name1: string, name2: string) {
     this.profileService.getStatistics(name1).subscribe((res) => {
@@ -81,16 +91,13 @@ export class MatchesComponent implements OnInit {
   }
 
   getUpcomingMatchedData(data: any): void {
-    const match = data[1];
+    const match = data[0];
     this.statistics1 = undefined;
     this.statistics2 = undefined;
     this.type = match.type ?? 'atp';
-    this.playerOne = match.matchPlayed.player1.name;
-    this.playerTwo = match.matchPlayed.player2.name;
-    this.getProfileInformation(
-      match.matchPlayed.player1.name,
-      match.matchPlayed.player2.name
-    );
+    this.playerOne = match.player1.name;
+    this.playerTwo = match.player2.name;
+    this.getProfileInformation(match.player1.name, match.player2.name);
 
     this.profiles$ = this.h2hService.getProfilesData(
       this.type,
@@ -131,8 +138,6 @@ export class MatchesComponent implements OnInit {
           { name: 'secondPlayer', value: this.PlTwoStat.name },
         ];
         let eventStats = [
-          
-         
           {
             stats: 'Hard',
             firstPlayer: `${this.PlOneStat.hard1}/${this.PlOneStat.hard2}`,
@@ -153,7 +158,6 @@ export class MatchesComponent implements OnInit {
             firstPlayer: `${this.PlOneStat.grass1}/${this.PlOneStat.grass2}`,
             secondPlayer: `${this.PlTwoStat.grass1}/${this.PlTwoStat.grass2}`,
           },
-          
         ];
 
         if (this.court != '' || this.round != '' || this.tournament != '') {

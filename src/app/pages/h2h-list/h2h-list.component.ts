@@ -74,16 +74,13 @@ export class H2hListComponent implements OnInit {
   }
 
   getUpcomingMatchedData(data: any): void {
-    const match = data[1];
+    const match = data[0];
     this.statistics1 = undefined;
     this.statistics2 = undefined;
     this.type = match.type ?? 'atp';
-    this.playerOne = match.matchPlayed.player1.name;
-    this.playerTwo = match.matchPlayed.player2.name;
-    this.getProfileInformation(
-      match.matchPlayed.player1.name,
-      match.matchPlayed.player2.name
-    );
+    this.playerOne = match.player1.name;
+    this.playerTwo = match.player2.name;
+    this.getProfileInformation(match.player1.name, match.player2.name);
 
     this.profiles$ = this.h2hService.getProfilesData(
       this.type,
@@ -175,37 +172,5 @@ export class H2hListComponent implements OnInit {
 
   public initialize() {
     const date = new Date().toISOString();
-    this.upcomingMatchesService
-      .getUpcomingMatches(this.limit, date)
-      .subscribe((res) => {
-        this.groupByTournament = this.mapMatchesToGroups(res.matches);
-      });
-  }
-
-  private mapMatchesToGroups(matches: UpcomingInterface[]) {
-    let drawGroups: string[] = [
-      ...new Set(matches.map((v) => v.tournament.name)),
-    ];
-    let groups = [];
-    for (let drawGroup of drawGroups) {
-      groups.push({
-        group: drawGroup,
-        match: matches
-          .filter((v) => v.tournament.name == drawGroup)
-          .map((v) => ({ matchPlayed: v })),
-      });
-    }
-    let draws = [];
-    for (let group of groups) {
-      draws.push({
-        group: group.group,
-        type: group.match[0].matchPlayed?.type,
-        date: group.match[0].matchPlayed?.date,
-        logo_path: group?.match[0]?.matchPlayed?.tournament.court.name,
-      });
-      draws.push(...group.match);
-    }
-    this.getUpcomingMatchedData(draws);
-    return draws;
   }
 }

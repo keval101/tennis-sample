@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LiveEventInterface } from 'src/app/shared/interfaces/live-event';
 import { RankingInterface } from 'src/app/shared/interfaces/ranking';
@@ -19,6 +19,8 @@ export class SidebarComponent implements OnInit {
   liveEvents: LiveEventInterface[] = [];
   interestingH2h: InterestingH2hInterface[] = [];
   tab: string = 'atp';
+  @Output() emitATPInterestingH2h = new EventEmitter();
+
   @Input() showAtpRanking: boolean = true;
   @Input() showLiveEvents: boolean = true;
   @Input() showInterestingH2h: boolean = true;
@@ -60,6 +62,7 @@ export class SidebarComponent implements OnInit {
   getInterestingH2h(tab: string) {
     this.interestingH2hService.getInterestingH2h(tab).subscribe((v) => {
       this.interestingH2h = v;
+      this.emitATPInterestingH2h.emit(v);
     });
   }
 

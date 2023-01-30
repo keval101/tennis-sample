@@ -153,16 +153,16 @@ export class UpcomingMatchesComponent implements OnInit {
       });
   }
 
-  navigateToTeamPage(teamName: string): void {
-    window.location.href = `/football/team/${teamName}`;
+  navigateToTeamPage(teamName: string,teamId:number): void {
+    window.location.href = `/football/team/${teamId}/${teamName}`;
   }
 
   navigateToH2h(firstTeamId: number, secondTeamId: number, firstTeamName: string, secondTeamName: string): void {
      window.location.href = `/football/h2h-odds-prediction/${firstTeamId}/${secondTeamId}/${firstTeamName}/${secondTeamName}`;
   }
 
-  navigateToLeague(leagueName: string): void {
-    window.location.href = `/football/league/${leagueName}`;
+  navigateToLeague(leagueName: string,leagueId:number): void {
+    window.location.href = `/football/league/${leagueId}/${leagueName}`;
   }
 
   navigateToMatches(): void {
@@ -181,21 +181,29 @@ export class UpcomingMatchesComponent implements OnInit {
         ...match.league,
       },
     }));
-    let drawGroups: string[] = [...new Set(matches.map((v) => v.league.name))];
+    let drawGroups: any[] = [];
+    matches.map((v) => {
+      drawGroups.push({
+        name: v.league.name,
+        id: v.league.id,
+        logo_path: v.league.logo_path,
+      });
+    });
     let groups = [];
     for (let drawGroup of drawGroups) {
       groups.push({
         group: drawGroup,
         match: matches
-          .filter((v) => v.league.name == drawGroup)
+          .filter((v) => v.league.name == drawGroup.name)
           .map((v) => ({ matchPlayed: v })),
       });
     }
     let draws = [];
     for (let group of groups) {
       draws.push({
-        group: group.group,
-        logo_path: group?.match[0]?.matchPlayed?.league.logo_path,
+        group: group.group.name,
+        id: group.group.id,
+        logo_path: group.group.logo_path,
       });
       draws.push(...group.match);
     }

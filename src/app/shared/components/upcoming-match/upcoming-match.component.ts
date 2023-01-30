@@ -95,12 +95,12 @@ export class UpcomingMatchComponent implements OnInit, OnDestroy {
     window.location.href = `/football/h2h-odds-prediction/${firstTeamId}/${secondTeamId}/${firstTeamName}/${secondTeamName}`;
   }
 
-  navigateToLeague(leagueName: string | undefined): void {
-    window.location.href = `/football/league/${leagueName}`;
+  navigateToLeague(leagueName: string | undefined , leagueId : number | undefined): void {
+    window.location.href = `/football/league/${leagueId}/${leagueName}`;
   }
 
-  navigateToTeam(teamName: string | undefined): void {
-    window.location.href = `/football/team/${teamName}`;
+  navigateToTeam(teamName: string | undefined,teamId: number | undefined): void {
+    window.location.href = `/football/team/${teamId}/${teamName}`;
   }
 
   ngOnDestroy() {

@@ -1,0 +1,62 @@
+<div class="footer p-4 p-md-5">
+  <div class="footer-container px-1 px-md-3">
+   
+    <div class="text-center text-md-start">
+      <div class="footer-content-contaier">
+        <div class="footer-left">
+          <h6 class="text-uppercase fw-bold mb-4 footer-logo" routerLink="/">
+            <img src="assets/images/brand-logo.png" alt=""  class="cursor-pointer"/>
+          </h6>
+          <p>
+            Stevegtennis is your No.1 resource for tennis & football stats. We
+            cover all levels of tennis events worldwide with latest news and
+            full stats analysis. Head to head pages between players have
+            detailed historical stats, current event stats and predictions.
+            Soccer stats are in Beta. If you have any questions or feedback
+            please contact us.
+          </p>
+          <p class="mb-0">
+            Stats and predictions on our website are for reference. We are not
+            responsible for your outcomes. All trademarks belong to their
+            respective owners.
+          </p>
+        </div>
+
+        <div class="footer-right-container">
+          <div class="footer-right mt-4">
+            <h6 class="text-uppercase fw-bold mb-4">Tennis Stats</h6>
+            <p>
+              <a (click)="navigateToLinks('h2h-search')">Head To Head Stats </a>
+            </p>
+            <p>
+              <a (click)="navigateToLinks('upcoming-todays-tennis-matches')"
+                >Upcoming Matches</a
+              >
+            </p>
+            <p>
+              <a (click)="navigateToLinks('calendar')">ATP / WTA Calendar</a>
+            </p>
+            <p>
+              <a (click)="navigateToLinks('men-atp-rankings')">ATP / WTA Rankings</a>
+            </p>
+          </div>
+          <div class="footer-right mt-4">
+            <h6 class="text-uppercase fw-bold mb-4">Football Stats</h6>
+            <p>
+              <a (click)="navigateToFootball('/football/football-upcoming-football-soccer-matches')">Upcoming Matches </a>
+            </p>
+            <p>
+              <a (click)="navigateToFootball('/football/league/564/la liga')">La Liga</a>
+            </p>
+            <p>
+              <a (click)="navigateToFootball('/football/league/881/premier league')">Premier League</a>
+            </p>
+            <p>
+              <a (click)="navigateToFootball('/football/league/384/Serie A')">Seria A</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

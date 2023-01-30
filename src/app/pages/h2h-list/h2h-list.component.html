@@ -57,7 +57,7 @@
       </div>
     </div>
     <div class="col col-lg-4 col-md-7 d-none d-md-block sidebar-container">
-      <app-sidebar [showAtpRanking]="false"></app-sidebar>
+      <app-sidebar [showAtpRanking]="false" (emitATPInterestingH2h)="getUpcomingMatchedData($event)"></app-sidebar>
     </div>
   </div>
 </div>

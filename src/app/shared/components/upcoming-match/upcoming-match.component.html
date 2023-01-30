@@ -3,7 +3,7 @@
   <div class="upcoming-description" 
   *ngIf="upcoming && (upcoming.firstTeam | json) != ({} | json) && (upcoming.secondTeam | json) != ({} | json)">
     <div class="upcoming-head">
-      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.firstTeam?.name ? navigateToTeam(upcomingMatch?.firstTeam?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.firstTeam?.name ? navigateToTeam(upcomingMatch?.firstTeam?.name,upcomingMatch?.firstTeam?.id) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
         <img class="team-logo cursor-pointer" [src]="upcoming?.firstTeam?.logo_path"  alt="" />
         <div class="match-team cursor-pointer">{{ upcoming?.firstTeam?.name }}</div>
         <!-- <div class="d-flex flex-wrap match-result">
@@ -27,7 +27,7 @@
           </div>
         </div> -->
       </div>
-      <div class="match-info pointer" (click)="upcomingMatch?.league?.name ? navigateToLeague(upcomingMatch?.league?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+      <div class="match-info pointer" (click)="upcomingMatch?.league?.name ? navigateToLeague(upcomingMatch?.league?.name,upcomingMatch?.league?.id) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
         <div class="match-header cursor-pointer">
             <img [src]="upcoming?.league?.logo_path" />
             <div class="match-name">{{ upcoming?.league?.name }}</div>
@@ -41,7 +41,7 @@
             </div> -->
         </div>
       </div>
-      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.secondTeam?.name ? navigateToTeam(upcomingMatch?.secondTeam?.name) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
+      <div class="match-info justify-content-end pointer team-width" (click)="upcomingMatch?.secondTeam?.name ? navigateToTeam(upcomingMatch?.secondTeam?.name,upcomingMatch?.secondTeam?.id) : navigateToH2h(upcoming.firstTeam.id, upcoming.secondTeam.id,upcoming.firstTeam.name, upcoming.secondTeam.name)">
         <img class="team-logo cursor-pointer" [src]="upcoming?.secondTeam?.logo_path" alt="" />
         <div class="match-team cursor-pointer">{{ upcoming?.secondTeam?.name }}</div>
         <div class="d-flex flex-wrap match-result">

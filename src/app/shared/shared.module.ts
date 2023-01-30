@@ -27,6 +27,7 @@ import { InterestingH2hComponent } from './components/interesting-h2h/interestin
 import { AwayTeamComponent } from './components/away-team/away-team.component';
 import { UpcomingMatchComponent } from './components/upcoming-match/upcoming-match.component';
 import { NotStatComponent } from './components/not-stat/not-stat.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { NotStatComponent } from './components/not-stat/not-stat.component';
     AwayTeamComponent,
     UpcomingMatchComponent,
     NotStatComponent,
+    FooterComponent,
   ],
   imports: [
     MatIconModule,
@@ -85,7 +87,8 @@ import { NotStatComponent } from './components/not-stat/not-stat.component';
     InterestingH2hComponent,
     AwayTeamComponent,
     UpcomingMatchComponent,
-    NotStatComponent
+    NotStatComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule {}

@@ -7,8 +7,9 @@ import { MetaTagsService } from 'src/app/shared/services/meta-tags.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private metaTagService: MetaTagsService) { }
+  playerOne!: string;
+  playerTwo!: string
+  constructor(private metaTagService: MetaTagsService) {}
 
   ngOnInit(): void {
     this.metaTagService.updateTheMetaTags({
@@ -19,4 +20,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getFeaturedMatch(data: any): void {
+    const featureMatch = data[0]
+    this.playerOne = featureMatch.player1.name
+    this.playerTwo = featureMatch.player2.name
+  }
 }
